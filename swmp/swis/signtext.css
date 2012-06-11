@@ -1,0 +1,76 @@
+#signtext {
+  position: relative;
+  float:left;
+}
+
+#stcommand {
+  position: absolute;
+  z-index:2;
+  margin-top: 5px;
+  padding: 2px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid black;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid black;
+  background-color: white;
+}
+
+#acceptST {
+}
+
+#detail {
+  z-index:1;
+}
+
+.signdiv {
+  position: relative;
+}
+
+.button {
+  width: 64px;
+  height: 56px;
+}
+
+.signempty {
+  position: relative;
+  background-color: #ccffff;
+}
+
+.signselected {
+  position: relative;
+  background-color: #cccccc;
+}
+
+.spaceS {
+  position: relative;
+  height: 30px;
+}
+.spaceP {
+  position: relative;
+  height: 30px;
+}
+.spaceSS {
+  position: relative;
+  height: 30px;
+}
+.spaceSP {
+  position: relative;
+  height: 15px;
+}
+.spacePS {
+  position: relative;
+  height: 45px;
+}
+.spacePP {
+  position: relative;
+  height: 15px;
+}
+
+#middlelane {
+  position: relative;
+  float:left;
+  background-color: #cccccc;
+  height: 100%;
+  width: 2;
+}
+

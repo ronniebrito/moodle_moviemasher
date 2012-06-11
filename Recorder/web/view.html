@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		<title>Simple Viewer</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 10px;
+				background: #FFFFFF;
+			}
+			
+			#viewer {
+				margin: 0;
+				padding: 0;
+				width: 356px;
+				height: 276px;
+			}
+		</style>
+		<script type="text/javascript" src="flash_resize.js"></script>
+		<script type="text/javascript" src="swfobject.js"></script>
+	</head>
+	<body>
+		<div id="viewer">
+			<strong>Your flash player appears to be out of date.  Please upgrade it.</strong>
+		</div>
+		<script type="text/javascript">
+			// <![CDATA[
+			
+			var so = new SWFObject("view.swf", "view", "100%", "100%", "8", "#FFFFFF");
+			so.addParam("allowScriptAccess", "always");
+			so.addVariable("allowResize", canResizeFlash());
+			so.write("viewer");
+			
+			// ]]>
+		</script>
+	</body>
+</html>

@@ -1,0 +1,26 @@
+body {
+  background-color: #000000;
+}
+
+#palette {
+  color: #ffffff;
+  background-color: #000000;
+}
+
+#signbox,  #special, #sequence {
+  background-color: black;
+}
+
+#signboxRight, #signboxBottom {
+  background-color: white;
+}
+
+.gridded {
+  background-image: url(media/grid_inv.png);
+}
+
+#special, #sequence, .SequenceSymbol {
+  border-bottom: 1px solid white;
+  border-right: 1px solid white;
+  color: black;
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<moviemasher>
+  <mash id="16" quantize="10" autostop="" width="640" height="336" config="media/xml/panel_player.xml">
+    <clip type="image" id="42b919e4f3aee9d0bdc1f2348c1c9ca2" lengthseconds="5" length="50" fill="stretch" track="0" label="Kongsberg Night-18"/>
+    <media label="Kongsberg Night-18" id="42b919e4f3aee9d0bdc1f2348c1c9ca2" type="image" url="http://farm8.static.flickr.com/7049/6836427794_a55fe7c572.jpg" icon="http://farm8.static.flickr.com/7049/6836427794_a55fe7c572_t.jpg"/>
+  </mash>
+</moviemasher>

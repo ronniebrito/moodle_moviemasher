@@ -1,0 +1,6 @@
+<moviemasher>
+  <mash width="320" height="240" crop="1" label="Example Mash" quantize="10" id="8a365a2baaf5681bbda6b3551d827256">
+    <clip type="video" id="90e10825a4e08746c2e6e31d4c951122" audio="1" label="Manchester United vs Tottenham 3-0 All Goals &amp; Highlights 22/08/2011 HD" volume="0,70,100,70" fill="stretch" trimstart="0" track="0" trimend="0" start="0" length="1610"/>
+    <media label="Manchester United vs Tottenham 3-0 All Goals &amp; Highlights 22/08/2011 HD" id="90e10825a4e08746c2e6e31d4c951122" duration="161" type="video" url="SIf-QvqJg18.youtube" icon="http://i.ytimg.com/vi/SIf-QvqJg18/default.jpg" audio="1"/>
+  </mash>
+</moviemasher>

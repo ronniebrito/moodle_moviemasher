@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/moviemasher/db" VERSION="20070401" COMMENT="XMLDB file for Moodle mod/moviemasher"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="moviemasher" COMMENT="Default comment for moviemasher, please edit me"  NEXT="moviemasher_mash">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" ENUM="false" NEXT="course"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="Course moviemasher activity belongs to" PREVIOUS="id" NEXT="name"/>
+      
+	    <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" ENUM="false" COMMENT="name field for moodle instances" PREVIOUS="course" NEXT="intro"/>
+		
+        <FIELD NAME="intro" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="General introduction of the moviemasher activity" PREVIOUS="name" NEXT="telePromptText"/>
+		
+		  <FIELD NAME="telePromptText" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="Texto to be translated" PREVIOUS="intro" NEXT="moviemashervideo"/>
+		  
+		<FIELD NAME="moviemashervideo" TYPE="char" LENGTH="255" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="Video principal" PREVIOUS="telePromptText" NEXT="default_mash"/>
+		
+		<FIELD NAME="default_mash" TYPE="text" LENGTH="medium"  NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="Video principal" PREVIOUS="moviemashervideo" NEXT="introformat"/>
+		
+		
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)" PREVIOUS="default_mash" NEXT="timecreated"/>
+        
+		<FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="introformat" NEXT="timemodified"/>
+        
+		<FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="timecreated"/>
+      
+	  </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+	
+	
+	<TABLE NAME="moviemasher_mash" COMMENT="answer masher of the activity"  PREVIOUS="moviemasher" NEXT="moviemasher_video">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" ENUM="false" NEXT="moviemasher_id"/>		
+		
+        <FIELD NAME="moviemasher_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="moviemasher mash belongs to" PREVIOUS="id" NEXT="user_id"/>		
+		
+		<FIELD NAME="user_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="moviemasher mash belongs to" PREVIOUS="moviemasher_id" NEXT="mash"/>
+		
+        <FIELD NAME="mash" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="General introduction of the moviemasher activity" PREVIOUS="user_id" NEXT="text"/>		
+		
+		   <FIELD NAME="text" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="General introduction of the moviemasher activity" PREVIOUS="mash" NEXT="telepromptspeed"/>	
+		   
+		      <FIELD NAME="telepromptspeed" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="scrooling speed of telepromptery" PREVIOUS="text" NEXT="telepromptfontsize"/>	
+			  
+			     <FIELD NAME="telepromptfontsize" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="font size of teleprompter" PREVIOUS="telepromptspeed" NEXT="timecreated"/>	
+		   
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="telepromptfontsize" NEXT="timemodified"/>
+		
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="timecreated"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+      </KEYS>      
+    </TABLE>
+		
+	
+	<TABLE NAME="moviemasher_video" COMMENT="videos belonging to a certain user mash"   PREVIOUS="moviemasher_mash" >
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" ENUM="false" NEXT="mash_id"/>		
+		
+        <FIELD NAME="mash_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="mash video belongs to" PREVIOUS="id" NEXT="extension"/>
+				
+ <FIELD NAME="extension" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="File extension" PREVIOUS="mash_id" NEXT="name"/>	
+
+	    <FIELD NAME="name" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="General introduction of the moviemasher activity" PREVIOUS="extension" NEXT="duration"/>	
+			
+		  <FIELD NAME="duration" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="General introduction of the moviemasher activity" PREVIOUS="name" NEXT="timecreated"/>		
+		  
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="duration" NEXT="timemodified"/>
+		
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" PREVIOUS="timecreated"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id" />
+      </KEYS>      
+    </TABLE>	
+	
+  </TABLES>
+  
+  <STATEMENTS>
+    <STATEMENT NAME="insert log_display" TYPE="insert" TABLE="log_display" COMMENT="Initial insert of records on table log_display. Each record describes how data will be showed by log reports.">
+      <SENTENCES>
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('moviemasher', 'add', 'moviemasher', 'name')" />
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('moviemasher', 'update', 'moviemasher', 'name')" />
+        <SENTENCE TEXT="(module, action, mtable, field) VALUES ('moviemasher', 'view', 'moviemasher', 'name')" />
+      </SENTENCES>
+    </STATEMENT>
+  </STATEMENTS>
+</XMLDB>

@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<project name="recorder" default="compile" basedir="." xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <!-- // Basedir property -->
+    <property name="base.dir" value="."/>
+    <!-- // Give user a chance to override without editing this file or typing '-D'. -->
+    <property file="${base.dir}/build.properties"/>
+
+    <!-- // Set the global properties for this project. -->
+    <property name="ivy.install.version" value="2.2.0-rc1"/>
+    <property name="ivy.home" value="${user.home}/.ivy2"/>
+    <property name="ivy.jar.dir" value="${ivy.home}/lib"/>
+    <property name="ivy.jar.file" value="${ivy.jar.dir}/ivy-${ivy.install.version}.jar"/>
+    <property name="ivy.report.dir" value="${base.dir}/reports"/>
+    <property name="project.name" value="${project.publish.name}"/>
+    <property name="src.java.dir" value="${base.dir}/src/java"/>
+    <property name="src.test.dir" value="${base.dir}/src/test"/>
+    <property name="war.dir" value="${base.dir}/web"/>
+    <property name="ext.dir" value="${base.dir}/ext"/>
+    <property name="lib.dir" value="${war.dir}/WEB-INF/lib"/>
+    <property name="resources.dir" value="${base.dir}/src/resources"/>
+    <property name="test.dir" value="${base.dir}/test-build"/>
+    <property name="dest.dir" value="${war.dir}/WEB-INF/classes"/>
+    <property name="javac.debug" value="true"/>
+    <property name="javac.deprecation" value="false"/>
+    <property name="debug" value="false"/>
+
+    <!-- // Compile classpath -->
+    <path id="build.classpath">
+        <fileset dir="${ext.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${dest.dir}"/>
+    </path>
+
+    <condition property="no-ivy">
+        <not>
+            <available file="${ivy.jar.file}"/>
+        </not>
+    </condition>
+
+    <target name="download-ivy" if="no-ivy" unless="offline" description="--> Download ivy version: ${ivy.install.version}">
+        <mkdir dir="${ivy.jar.dir}"/>
+        <get src="http://repo2.maven.org/maven2/org/apache/ivy/ivy/${ivy.install.version}/ivy-${ivy.install.version}.jar"
+             dest="${ivy.jar.file}"
+             usetimestamp="true"/>
+    </target>
+
+    <target name="install-ivy" depends="download-ivy" description="--> Install and prepare ivy">
+        <path id="ivy.lib.path">
+            <fileset dir="${ivy.jar.dir}" includes="*.jar"/>
+        </path>
+        <taskdef resource="org/apache/ivy/ant/antlib.xml" uri="antlib:org.apache.ivy.ant" classpathref="ivy.lib.path"/>
+    </target>
+
+    <target name="remove-ivy" description="--> Remove the ivy installation">
+        <delete dir="${ivy.jar.dir}"/>
+    </target>
+
+    <target name="clean-ivy-cache" depends="install-ivy" description="--> Clean the ivy cache">
+        <ivy:cleancache/>
+        <delete dir="${ivy.report.dir}"/>
+        <delete includeemptydirs="true">
+            <fileset dir="${ext.dir}" excludes="**/ivy*.jar"/>
+            <fileset dir="${lib.dir}" excludes="**/ivy*.jar"/>
+        </delete>
+    </target>
+
+    <target name="retrieve" depends="install-ivy" description="Retrieves the libraries if needed.">
+        <mkdir dir="${ext.dir}"/>
+        <mkdir dir="${lib.dir}"/>
+        <ivy:settings file="${base.dir}/ivysettings.xml"/>
+        <condition property="ivy.conf.name" value="default">
+            <not>
+                <isset property="ivy.conf.name"/>
+            </not>
+        </condition>
+        <echo message="Ivy conf name: ${ivy.conf.name}"/>
+        <ivy:resolve file="${base.dir}/ivy.xml" conf="${ivy.conf.name}"/>
+        <ivy:retrieve conf="${ivy.conf.name}"
+                      pattern="${lib.dir}/[artifact](-[revision]).[ext]"/>
+        <ivy:retrieve conf="compile"
+                      pattern="${ext.dir}/[artifact](-[revision]).[ext]"/>
+        <ivy:report conf="default" todir="${ivy.report.dir}" />
+    </target>
+
+    <target name="init" depends="retrieve" description="Initialize the build">
+        <tstamp/>
+        <mkdir dir="${dest.dir}"/>
+    </target>
+
+    <target name="compile" depends="init"
+            description="Compile the Java source code">
+        <javac classpathref="build.classpath"
+               destdir="${dest.dir}"
+               debug="${javac.debug}"
+               deprecation="${javac.deprecation}"
+               nowarn="on">
+            <src path="${src.java.dir}"/>
+        </javac>
+        <copy todir="${dest.dir}">
+            <fileset dir="${resources.dir}">
+                <include name="*.properties"/>
+                <include name="**/*.xml"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean" description="Cleans up the build directory">
+        <delete includeemptydirs="true" dir="${dest.dir}"/>
+    </target>
+
+</project>

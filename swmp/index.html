@@ -1,0 +1,112 @@
+<html>
+<head></head>
+<body>
+<center>
+<h1>SignWriting MediaWiki Plugin</h1>
+<h2>Release 1.2.2</h2>
+<table cellpadding=20><tr><td>
+<a href="http://scripts.sil.org/OFL"><img src="swis/media/ofl.png"></a>
+</td><td>
+<a href="http://www.gnu.org/copyleft/gpl.html"><img src="swis/media/gplv3.png"></a>
+</td></tr></table>
+<b>Copyright 2007-2010 Stephen E Slevinski Jr. Some Rights Reserved.</b><br>
+Except where otherwise noted, this work is licensed under<br>
+<a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution ShareAlike 3.0<br><img src="swis/media/by-sa.png"></a><br>
+</center>
+
+<h1>Contents</h1>
+<a href="#Background"><h2>1. Background</h2></a>
+
+<a href="#Purpose"><h2>2. Purpose</h2></a>
+
+<a href="#Requirements"><h2>3. Requirements</h2></a>
+
+<a href="#Installation"><h2>4. Installation</h2></a>
+
+<a href="#Usage"><h2>5. Usage</h2></a>
+
+<a href="#Future"><h2>6. Future</h2></a>
+
+<hr>
+
+<h1 id="Background">1. Background</h1>
+Sign languages are written languages.  SignWriting is the script that makes it possible to write sign language for any purpose.
+
+<p>The SignWriting MediaWiki Plugin uses the <a href="swis">SignWriting Image Server: open font and rendering software</a>.
+
+<p>I have been working with Valerie Sutton, the creator of SignWriting, to make the SignWriting standards open and free.  With the use of the GPL 3, Open Font License, and Creative Commons by-sa, I think we have a solid foundation for future expansion.
+ 
+<p>With the release of the <a href="swis/iswa">Internation SignWriting Alphabet 2010</a> under the <a href="http://scripts.sil.org/OFL">Open Font License</a>, it is time to create open tools so that sign languages can flourish online.  
+
+<hr>
+
+<h1 id="Purpose">2. Purpose</h1>
+The SignWriting MediaWiki Plugin makes it possible to view signs and sign texts within MediaWiki.  Either a simple markup with hex data or UTF-8 can be used.
+
+<hr>
+
+<h1 id="Requirements">3. Requirements</h1>
+The GD graphics library must be installed on the server.
+<hr>
+
+<h1 id="Installation">4. Installation</h1>
+<h2>Extension</h2>
+<ul>
+<li>
+Put the extension code in the directory <b><i>extensions/swmp</i></b> within the MediaWiki folder.
+</li>
+<li>
+Add the line <b><i>require_once ('extensions/swmp/swmp.php');</i></b> to the <b>LocalSettings.php</b> file.
+</li>
+</ul>
+
+<h2>Toolbar</h2>
+It is possible to add a sign text button to the edit tooolbar within MediaWiki.
+
+Edit the page <b><i>MediaWiki:Common.js</i></b>.  Add the following code. Change the location of the image file as needed. 
+<p><b>
+if (mwCustomEditButtons) {<br> 
+&nbsp;&nbsp; mwCustomEditButtons[mwCustomEditButtons.length] = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     "imageFile": "/mediawiki/extensions/swmp/button_Sign.png",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     "speedTip": "SignText",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     "tagOpen": "&lt;signtext&gt;",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     "tagClose": "&lt;/signtext&gt;",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;     "sampleText": ""};<br>
+}<br>
+</b>
+
+<p>After the code above has been added, the browser javascrip cache will need to be reloaded to be able to view the added toolbar button. Internet Explorer users can  hold down the Ctrl key and click the Refresh button. Firefox users can hold down the Shift key while clicking Reload. 
+<hr>
+
+<h1 id="Usage">5. Usage</h1>
+The plugin uses <a href="swis/bswref.html">Binary SignWriting</a> encoded as hexadecimal data or Unicode compatible UTF-8.
+
+<h2>Markup with hexadecimal</h2>
+Four types of markup are available:<br> 
+&lt;sym&gt;14c38e392&lt;/sym&gt;<br>
+&lt;sign&gt;0fb14c38e3924a54bd27138c3984bb4cf&lt;/sign&gt;<br>
+&lt;seq&gt;14c38e39227138c398&lt;/seq&gt;<br>
+&lt;signtext&gt;0fb14c38e3924a54bd27138c3984bb4cf 0fd14c38e39227138c398 0fb18738c39c4c04c618738c3934b94b020538c3924d14b32ef38c3924c949c 0fd18738c39318738c39c2ef38c39220538c392 38838c392&lt;/signtext&gt;<br>
+
+<p>Each uses Binary SignWriting as hexadecimal.  The sym takes a single symbol represented by 3 characters.  The sign takes a single sign.  The seq takes a list of symbols.  The signtext can handle an entire sign text.
+
+<p>The Binary SignWriting can be created using the <a href="swis">SignWriting Image Server</a>.
+ 
+<h2>UTF-8 Plane 15</h2>
+It is also possible to use the UTF-8 encoding of Binary SignWriting.  The character data does not need to be enclosed withing markup, but can appear anywhere as plain characters.  Before displaying the page, the UTF-8 is converted to hexadecimal and enclosed in the &lt;signtext&gt; markup.
+
+<hr>
+
+<h1 id="Future">6. Future</h1>
+<h2>Presentation</h2>
+Currently, there is no customization of the SignWriting images available through the markup.  In the future, this will be available through the markup and through CSS.
+
+<h2>Editors</h2>
+The editors are included in the plugin, but external to the MediaWiki interface. In the future, the editors will be directly linked as edit options from the MediaWiki interface.   
+
+<p>All feedback and comments are welcome to Steve (<a href="mailto:%73%6c%65%76%69%6e%40%73%69%67%6e%70%75%64%64%6c%65%2e%6e%65%74">slevin at SignPuddle.net</a>)
+
+<hr>
+<center><b>END</b></center>
+</body>
+</html>

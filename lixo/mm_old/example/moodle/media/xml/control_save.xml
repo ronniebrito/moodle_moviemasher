@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moviemasher>
+
+	<control symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Icon' width="*" />
+	<!-- SHARE CGI CONTROL -->
+	<control pattern='     Share     ' 
+		tie="player.mash" id='sharer'
+		url="media/php/share.php?id={mash.id}&amp;duration={mash.duration}" 
+		media="1" mash="1" 
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
+		icon="media/image/f_logo_button.swf"
+		textalign='center' textsize="11" textcolor='FFFFFF'
+	/>
+	
+	<!-- SAVE CGI CONTROL -->
+	<control pattern='Save' 
+		tie="player.mash" id='saver'
+		disable="player.dirty=0" 
+		url="media/php/save.php?mash={mash.xml}&mash_id={mash.id}" 
+		media="1" mash="1" 
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
+		icon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOff"
+		overicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOn"
+		disicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnDis"
+		fill='stretch' width='65' textalign='center' textsize="11" textcolor='333333'
+	/>
+	
+	
+	<!-- ONLY REMOVE IF YOU PROVIDE SOME OTHER OBVIOUS LINK TO MOVIEMASHER.COM -->
+	<control tooltip='Movie Masher' id='logo'
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
+		get='javascript:window.open("../../LICENSE.html", "moviemasher_license", "width=340,height=540");'
+		icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf#MovieMasher' 
+	/>			
+
+</moviemasher>

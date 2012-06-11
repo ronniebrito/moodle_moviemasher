@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<moviemasher>
+
+	<!-- CROSSFADE TRANSITION -->
+	<media group='transition' type='transition' id='crossfadetransition' label='Crossfade' 
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Crossfade' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Crossfade' 
+	/>
+
+
+	<!-- BLINDS TRANSITION -->
+	<media group='transition' type='transition' id='blindsmattetransition' label='Blinds'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='blindstransitiontheme' 
+	>
+		<media id='blindstransitiontheme' group='theme' type='theme'
+			map='bars' alpha='100' 
+			orientation='vertical' instances='25' 
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+
+	<!-- IRIS OPEN TRANSITION -->
+	<media group='transition' type='transition' id='irisopentransition' label='Iris Open'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='circleouttransitiontheme'
+	>
+		<media id='circleouttransitiontheme' group='theme' type='theme'
+			fade = '0,0,100,100'
+			map='circle'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+	
+	
+	<!-- IRIS CLOSE TRANSITION -->
+	<media group='transition' type='transition' id='irisclosetransition' label='Iris Close'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='circleintransitiontheme'
+		swap='1'
+	>
+		<media id='circleintransitiontheme' group='theme' type='theme'
+			fade = '0,100,100,0'
+			map='circle'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+
+	
+	<!-- CUBE RIGHT TO LEFT TRANSITION -->
+	<media group='transition' type='transition' id='cubelefttransition' label='Cube Right to Left' 
+		direction='left' 
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Cube' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Cube' 
+	/>
+	
+	<!-- CUBE TOP TO BOTTOM TRANSITION -->
+	<media group='transition' type='transition' id='cubedowntransition' label='Cube Top to Bottom' 
+		direction='down' 
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Cube' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Cube' 
+	/>
+	
+	<!-- CUBE BOTTOM TO TOP TRANSITION -->
+	<media group='transition' type='transition' id='cubeuptransition' label='Cube Bottom to Top' 
+		direction='up' 
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Cube' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Cube' 
+	/>
+	
+	<!-- CUBE LEFT TO RIGHT TRANSITION -->
+	<media group='transition' type='transition' id='cuberighttransition' label='Cube Left to Right' 
+		direction='right' 
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Cube' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Cube' 
+	/>
+
+	<!-- HOLE -->
+	<media group='transition' type='transition' id='pbholetransition' label='Hole'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Bender' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Bender' 
+		shader='../media/pbj/hole.pbj'
+		parameter0="10" parameter0fade="70" 
+		parameter1="90,10" parameter1fade="50,50" 
+		parameter2="1" parameter2fade="3" 
+		positions="1" scales="0"
+		ignorescale="1"
+		swap='1'		
+	/>
+	
+	<!-- WAVE REFLECTION -->
+	<media group='transition' type='transition' id='pbwavereflectiontransition' label='Wave Reflection'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Bender' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Bender' 
+		shader='../media/pbj/waveReflection.pbj'
+		parameter0="0" parameter0fade="1" 
+		parameter1="0" parameter1fade="20" 
+		parameter2=".22" parameter2fade=".22" 
+		swap='1'			
+	/>
+	
+	<!-- SIMPLE POINT LIGHT -->
+	<media group='transition' type='transition' id='pbsimplepointlighttransition' label='Simple Point Light'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Bender' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Bender' 
+		shader='../media/pbj/SimplePointLight.pbj'
+		parameter0="0,0" parameter0fade="100,100" 
+		parameter1="0" parameter1fade="200" 
+		parameter2="0" parameter2fade="2" 
+		parameter3="0" parameter3fade="2" 
+		positions="0" 
+		swap='1'
+	/>
+	
+	<!-- ZOOM BLUR -->
+	<media group='transition' type='transition' id='pbzoomblurtransition' label='Zoom Blur'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Bender' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Bender' 
+		shader='../media/pbj/zoomBlur.pbj'
+		parameter0="0,0" parameter0fade="100,100" 
+		parameter1="0" parameter1fade=".5" 
+		positions="0" 
+		swap='1'
+	/>
+	
+	<!-- SQUARE BOXES TRANSITION -->
+	<media group='transition' type='transition' id='squareboxestransition' label='Square Boxes'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='squareboxestransitiontheme'
+	>
+		<media id='squareboxestransitiontheme' group='theme' type='theme'
+			fade = '0,0,100,100'
+			instances='25'
+			map='rects'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+
+	
+	<!-- ROUNDED BOXES TRANSITION -->
+	<media group='transition' type='transition' id='roundedboxestransition' label='Rounded Boxes'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='roundedboxestransitiontheme'
+	>
+		<media id='roundedboxestransitiontheme' group='theme' type='theme'
+			fade = '0,0,100,100'
+			instances='25'
+			map='rects'
+			curve='10'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+
+
+	<!-- WIPE LEFT TO RIGHT TRANSITION -->
+	<media group='transition' type='transition' id='wiperightmattetransition' label='Wipe Left to Right'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='wiperighttransitiontheme'
+	>
+		<media id='wiperighttransitiontheme' group='theme' type='theme'
+			fade = '0,0,100,100'
+			map='bars' instances='1'
+			orientation='horizontal'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+
+	<!-- WIPE RIGHT TO LEFT TRANSITION -->
+	<media group='transition' type='transition' id='wipeleftmattetransition' label='Wipe Right to Left'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='wipelefttransitiontheme'
+		swap='1'
+	>
+		<media id='wipelefttransitiontheme' group='theme' type='theme'
+			fade = '0,100,100,0'
+			map='bars' instances='1'
+			orientation='horizontal'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+	
+	<!-- WIPE TOP TO BOTTOM TRANSITION -->
+	<media group='transition' type='transition' id='wipeupmattetransition' label='Wipe Top To Bottom'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='wipedowntransitiontheme'
+	>
+		<media id='wipedowntransitiontheme' group='theme' type='theme'
+			fade = '0,0,100,100'
+			map='bars' instances='1'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+
+	<!-- WIPE BOTTOM TO TOP TRANSITION -->
+	<media group='transition' type='transition' id='wipedownmattetransition' label='Wipe Bottom to Top'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Matte'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Matte'
+		composites='wipeuptransitiontheme'
+		swap='1'
+	>
+		<media id='wipeuptransitiontheme' group='theme' type='theme'
+			fade = '0,100,100,0'
+			map='bars' instances='1'
+			symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Shapes' 
+		/>
+	</media>
+		
+	
+
+
+
+</moviemasher>

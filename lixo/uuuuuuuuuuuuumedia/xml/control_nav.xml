@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moviemasher config='media/xml/control_nav_module.xml'>
+	
+	<!-- MEDIA TYPE FILTER CONTROLS -->
+	<control preselected="1" pattern='Video' bind="browser.parameters.group" value="video" select='browser.parameters.group=video' width='55' fill='stretch' forecolor='FFFFFF' textalign='center' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Text' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOff' overicon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOn' />
+	<control pattern='Audio' select='browser.parameters.group=audio' bind='browser.parameters.group' value='audio' width='60' fill='stretch' forecolor='FFFFFF' textalign='center' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Text' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOff' overicon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOn' />
+	<control pattern='Images' select='browser.parameters.group=image' bind='browser.parameters.group' value='image' width='65' fill='stretch' forecolor='FFFFFF' textalign='center' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Text' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOff' overicon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOn' />
+	
+</moviemasher>

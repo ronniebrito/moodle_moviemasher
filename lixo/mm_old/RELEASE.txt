@@ -1,0 +1,187 @@
+Version 3.1.10
+--------------
+* Migrated Movie Masher Server to standard Amazon LINUX AMI
+
+Version 3.1.09
+--------------
+* Attempted fix of EC2 AMI key copy issue
+
+Version 3.1.08
+--------------
+* Fixed timeline track creation bug
+
+Version 3.1.07
+--------------
+* Fixed timeline multi-selection issues
+* Fixed cache managment functions that allowed it to fill up
+
+Version 3.1.06
+--------------
+* Added support for read only clips - set editable='' in media tag
+* Added authenticated_url() hook function to authutils.php for generating callback URLs
+* Added EncoderIncludeOriginal job option that packages source media with encoding
+* Fixed Timeline control tag attributes: audiotracks, videotracks and effecttracks 
+* Fixed property issues related to multiple clip selection in Timeline
+* Fixed mash property issue related to composited media trimming
+
+Version 3.1.05
+--------------
+* Added PathSWF option to MovieMasher.xml for 'server' example so directory can be moved or renamed
+* Added US-West and EU-West regions to Movie Masher Server AMI as well as US-East
+* Changed path handling and include statements to better support windows deployments
+* Fixed server path related issues in 'upload' example deployment
+* Fixed errant static qualifiers for PHP class methods
+* Fixed bug that kept switches containing underscores from being honored in DecoderSwitches option
+
+
+Version 3.1.04
+--------------
+* Changed 'server' example to maintain different content for each authenticated user
+* Added mash document management features to 'server' example - new, revert, load
+* Added support to evaluate() for brackets after equals - eg. player.source={browser.selection.url}
+* Added FLV upload support to 'server' example (though still preprocessed like other video)
+* Changed 'server' example scripts to assume uploads with invalid mime type are interpreted as video
+* Fixed bundling issue that prevented example/server/media/php/progress.php from being included
+* Fixed media duration calculation that kept some transitions from rendering properly
+* Fixed caching issue that kept frames of video used more than once in mash from rendering
+* Added DecoderCacheAllVideoFrames option to work around any future video cache related issues
+* Fixed timeline trimming of start times for images, transition and themes
+* Added support for posting of REST transcoding jobs over HTTP (though this could be unsafe) 
+* Fixed issue in Clip class that kept nested effects from being selected and edited
+
+Version 3.1.03
+--------------
+* Fixed bug in Decoder.php that may have errantly reported invalid mash length.
+* Added 'lengthseconds' property to clip, to facilitate editing by time instead of frame.
+* Added Slider control to panel.xml bound to lengthseconds.
+* Added inline documentation for several classes (MovieMasher, Fetchers, interfaces). 
+* Refactored many ActionScript identifiers, hopefully to no effect. 
+* Changed line breaks from Unix to Windows style in a few of the example files.
+
+Version 3.1.02
+--------------
+* Added support for transitions based on Pixel Bender modules that create transparency masks
+* Added new Chromakey effect, to facilitate green screen compositing, etc
+* Added new Clouds theme, utilizing Perlin Noise filter to produce colorized animations
+* Added new Toggle control for editing of on/off properties like 'player.play'
+* Added 'player.stalling' property to facilitate loading indicator during playback 
+* Added Mash 'quantize' property to control resolution of edits (see online documentation)
+* Added more examples for Displacement effect - rain, ripple
+* Changed behavior of Displacement effect - now uses greyscale bumpmap instead of alpha
+* Changed Gradientmap theme to accommodate changes in Displacement effect
+* Changed Timeline zoom property to represent percentage of mash that's visible - feedback welcome
+* Fixed scaling issues in Decoder.php for image and video clips not having 'fill' of 'stretch' 
+* Fixed issues with mouse dragging affecting certain platforms
+* Fixed issues preventing use of Modules as preview icons (remember to fully qualify class)
+
+Version 3.0.12
+--------------
+* Made the distribution available on Amazon's EC2 as Movie Masher Server
+* Added example deployments that interact with Movie Masher Server
+* Added support for browsing of RSS/Atom feeds (no example, sorry)
+* Added support for browsing of YouTube and Flickr media
+* Added support for other custom media sources
+* Added beta support for YouTube chromeless player
+* Added support for other custom media handlers
+* Added support for event dispatching through evaluate API
+* Added support for calling of parent functions through evaluate API
+* Added support for hover border to items in Browser control
+* Added support for clip specific tooltips in Browser and Timeline controls
+* Changed 'fill' from a Media to a Clip property, so it's editable
+* Switched to VideoPlayer class for video handling
+* Fixed panel visibility bug related to window resizing
+* Fixed several cache related bugs
+* Fixed Timeline preview icon dislay bug
+* Fixed looping of audio MP3s
+* Moved com.moviemasher.control.CGI to Player SWF
+* Note: configurations that contain 'source' tags having 'url' attributes
+  must now also include a 'source' attribute pointing to the RemoteSource 
+  class - see the media/xml/source.xml file in the 'server' example.
+* Note: configurations containing 'media' tags having 'url' attributes ending
+  with 'mp3', 'flv' or other video file extensions must now supply the new
+  'handler' tag pointing to the relevant media handler class - see the
+  media/xml/handler.xml file in the 'static' example.
+* Note: video files with only audio tracks are no longer supported, sorry
+
+Version 2.2.12
+--------------
+* Support added for JavaScript control of Movie Masher applet through ExternalInterface
+* Support added for ActionScript loading and control of applet
+* Better control over timeline clip appearance 
+* Fixed bug that would rewind mash after play clicked a second time
+* Fixed bug that make scrubbing while playing difficult
+
+Version 2.1.06
+--------------
+* Fixed bug that kept player from refreshing in certain circumstances. 
+* Fixed bug that was outputting debugging info on clip changes. 
+* Fixed bug that would erroneously unload media when last frame of mash was accessed.
+
+Version 2.1.05
+--------------
+* Fixed bug that disabled audio clip selection in Timeline 
+* Fixed global volume muting of FLV files 
+* Fixed inappropriate purge of assets when scrubbing
+
+
+Version 2.1.04
+--------------
+* Added support for deleting of clips by dragging out of the Timeline 
+* Fixed problem related to selecting audio clips in Timeline 
+* Fixed Player refreshing of empty mashes 
+* Fixed FLV positioning issues for non-resizing Player controls
+
+Version 2.1.03
+--------------
+* Flash Player 10 or greater now required by end users 
+* New Bender effect supports loading of external PBJ files 
+* Added several new open source fonts to the static example 
+* Updated version of swfObject, with new calling syntax and express install 
+* Changed all line breaks in XML files to windows style (CRLF) 
+* Fixed video positioning bug for dynamically sized players
+
+Version 2.0.40
+--------------
+* Added Matte transition
+* Added Shapes module
+* Added 'split' property for Timeline control
+* Fixed 'speed' property for video Clips
+
+Version 2.0.39
+--------------
+* Changed default media options to supply correct path to media handlers
+
+Version 2.0.38
+--------------
+* ActionScript 3 rewrite of code base
+* FLV and h264 video support (beta)
+* Better configuration of browser and timeline items
+* Better control message handling
+* More effect application options
+* New CGI control for server interactions
+* New Matte module for dynamic masking
+* New Picturebox module for alternative compositing
+* New Textbox module for alternative captioning
+* New Colorize module for tinting
+* Removed Imagewell control - use Browser instead
+* Removed Scroller control, no replacement
+
+Version 1.3.03
+--------------
+* Mouse-based clip trimming within the Timeline control
+* More flexible media loading/filtering through the new 'Browserlist' control. 
+* Added two other new modules as well: a 'Caption' effect and 'Text' control.
+
+Version 1.3.02
+--------------
+* Major overhaul of the Timeline control
+* Support for low resolution previews in the Browser
+
+Version 1.3.01
+--------------
+* Fix for bug that kept media dragged from the browser from following the mouse during the drag operation.
+
+Version 1.3.00
+--------------
+* Core applet file size reduced to 85k. 
+* Source code streamlined for public release, and documented.

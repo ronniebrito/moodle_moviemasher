@@ -1,0 +1,170 @@
+.spreader{
+  margin:0px 0px 0px 0px;
+  padding:0px;
+  color:#333;
+  background-color:white;
+}
+
+.spheader {
+  width: 100%;
+  height:20px;
+}
+
+.logo{
+  position: relative;
+  float:left;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.icon_left{
+  top:20px;
+  position: relative;
+  float:left;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+#sptitle{
+  font-size:150%;
+  font-weight:900;
+  text-align: left;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+#spsub{
+  font-size:125%;
+  color:#cc3300;
+  top:10px;
+  left:20px;
+  position: relative;
+  float:left;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.icon_right{
+  position: relative;
+  float:right;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+  top:20px;
+}
+
+.spdetail {
+  position:relative;
+  width:100%;
+  bottom:30px;
+  overflow:visible;
+}
+
+.spfooter{
+  position:fixed;
+  background:#ffc;
+  width:98%;
+  height:45px;
+  bottom:0px;
+  overflow:visible;
+}
+
+.footer_left{
+  margin:0px 0px 10px 10px;
+  position: relative;
+  float:left;
+  text-align: left;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.footer_right{
+  position: relative;
+  float:right;
+  text-align: center;
+  vertical-align: middle;
+  overflow: visible;
+}
+
+.readout{
+  position: absolute;
+  width:40px;
+  height:30px;
+  margin: 2px 2px 2px 2px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid black;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid black;
+  text-align: center;
+}
+
+.Button{
+  position: relative;
+  float:left;
+  width:40px;
+  height:20px;
+  margin: 2px 2px 2px 2px;
+  border-top: 1px solid #cccccc;
+  border-bottom: 1px solid black;
+  border-left: 1px solid #cccccc;
+  border-right: 1px solid black;
+  background: #cccccc;
+  text-align: center;
+}
+
+.Button:hover
+{
+  background: #eeeeee;
+}
+
+.Button:active
+{
+  border-bottom: 1px solid #eeeeee;
+  border-top: 1px solid black;
+  border-right: 1px solid #eeeeee;
+  border-left: 1px solid black;
+}
+
+.Symbol {
+  position: absolute;
+  overflow: visible;
+}
+
+.Column{
+  position: relative;
+  float:left;
+  border-top: 2px solid blue;
+  border-bottom: 2px solid blue;
+  margin-bottom: 10px;
+  background:#ccc;
+}
+
+.even{
+  background:#ddd;
+}
+
+.odd{
+  background:#eee;
+}
+
+.first{
+  border-left: 2px solid blue;
+}
+
+.last {
+  border-right: 2px solid blue;
+}
+
+.allvisible
+{
+    overflow: visible;
+}
+
+.invisible
+{
+    visibility: hidden;
+}
+

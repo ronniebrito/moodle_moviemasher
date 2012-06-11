@@ -1,0 +1,115 @@
+<?php  // $Id: submissions.php,v 1.43 2006/08/28 08:42:30 toyomoyo Exp $
+
+//dsfecho (integer)ini_get('display_errors');
+ini_set('display_errors', 1);
+
+    require_once("../../config.php");
+    require_once("lib.php");
+
+    $id   = optional_param('id', 0, PARAM_INT);          // Course module ID
+    $a    = optional_param('a', 0, PARAM_INT);           // moviemasher ID
+    $mode = optional_param('mode', 'all', PARAM_ALPHA);  // What mode are we in?
+
+    if ($id) {
+	if (! $cm = get_coursemodule_from_id('moviemasher', $id)) {
+	    error("Course Module ID was incorrect");
+	}
+
+	if (! $moviemasher = get_record("moviemasher", "id", $cm->instance)) {
+	    error("moviemasher ID was incorrect");
+	}
+
+	if (! $course = get_record("course", "id", $moviemasher->course)) {
+	    error("Course is misconfigured");
+	}
+    } else {
+	if (!$moviemasher = get_record("moviemasher", "id", $a)) {
+	    error("Course module is incorrect");
+	}
+	if (! $course = get_record("course", "id", $moviemasher->course)) {
+	    error("Course is misconfigured");
+	}
+	if (! $cm = get_coursemodule_from_instance("moviemasher", $moviemasher->id, $course->id)) {
+	    error("Course Module ID was incorrect");
+	}
+    }
+    
+    
+$db->debug = true;
+
+$context = get_context_instance(CONTEXT_MODULE, $cm->id);
+
+    
+$tablecolumns = array('picture', 'fullname', 'grade', 'submissioncomment', 'timemodified', 'timemarked', 'status', 'finalgrade');
+$tableheaders = array('',
+			      get_string('fullname'),
+			      get_string('grade'),
+			      get_string('comment', 'assignment'),
+			      get_string('lastmodified').' ('.$course->student.')',
+			      get_string('lastmodified').' ('.$course->teacher.')',
+			      get_string('status'),
+			      get_string('finalgrade', 'grades'));
+
+require_once($CFG->libdir.'/tablelib.php');
+$table = new flexible_table('mod-assignment-submissions');
+$table->define_columns($tablecolumns);
+$table->define_headers($tableheaders);
+$table->set_attribute('cellspacing', '0');
+$table->set_attribute('id', 'attempts');
+$table->set_attribute('class', 'submissions');
+$table->set_attribute('width', '100%');
+$table->setup();
+
+
+// selects all posts of this mm
+
+
+if ($where = $table->get_sql_where()) {
+	      $where .= ' AND ';
+}
+
+if ($sort = $table->get_sql_sort()) {
+    $sort = ' ORDER BY '.$sort;
+}
+
+$groupmode = groups_get_activity_groupmode($cm);
+$currentgroup = groups_get_activity_group($cm, true);
+if (!empty($CFG->gradebookroles)) {
+    $gradebookroles = explode(",", $CFG->gradebookroles);
+} else {
+    $gradebookroles = '';
+}
+$users = get_role_users($gradebookroles, $context, true, '', 'u.lastname ASC', true, $currentgroup);
+ if ($users) {
+            $users = array_keys($users);
+            if (!empty($CFG->enablegroupings) and $cm->groupmembersonly) {
+                $groupingusers = groups_get_grouping_members($cm->groupingid, 'u.id', 'u.id');
+                if ($groupingusers) {
+                    $users = array_intersect($users, array_keys($groupingusers));
+                }
+            }
+        }
+        
+  $select = 'SELECT u.id, u.firstname, u.lastname, u.picture, u.imagealt,
+			  s.id AS submissionid, 
+			  s.timemodified ';
+	$sql = 'FROM '.$CFG->prefix.'user u '.
+	      'LEFT JOIN '.$CFG->prefix.'moviemasher_mash s ON u.id = s.user_id
+								  AND s.moviemasher_id = '.$moviemasher->id.' '.
+	       'WHERE '.$where.'u.id IN ('.implode(',',$users).') ';
+
+$posts = get_records_sql($select.$sql.$sort, $table->get_page_start(), $table->get_page_size());
+
+
+$navigation = build_navigation("Envios", $cm);
+print_header_simple(format_string($moviemasher->name,true), "", $navigation,'', '', true,  navmenu($course, $cm));
+
+foreach ($posts as $post ){
+    $row = array($post->fisrtname . $post->lastname, $userlink, $post->mash, $comment, $studentmodified, $teachermodified, $status, $finalgrade);
+    $table->add_data($row);
+}
+
+	$table->print_html();  /// Print the whole table
+
+	print_footer($this->course);
+?>

@@ -1,0 +1,441 @@
+<htm>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Binary SignWriting HTML Reference</title>
+    <link href="bswref.css" rel="stylesheet" type="text/css" media="all">
+    <script type="text/javascript" src="MochiKit.js"></script>
+    <script type="text/javascript" src="bsw.js"></script>
+    <script type="text/javascript" src="swclasses.js"></script>
+    <script type="text/javascript" src="bswref.js"></script>
+    <script type="text/javascript">
+      function imgSrc (cSym,other){
+        switch (cSym.length) {
+          case 3:
+            var view = base2view(cSym);
+            return 'iswa/' + cSym + '/' + view + '.png'; 
+            break;
+          case 4:
+            alert ("old BSW call");
+            break;
+          case 5://key call
+            var base = cSym.slice(0,3); 
+            return 'iswa/' + base + '/' + cSym + '.png'; 
+            break;
+          case 9://3 char call
+            var base = cSym.slice(0,3); 
+            var fill = char2fill(cSym.slice(3,6)); 
+            var rot = char2rot(cSym.slice(6,9)); 
+            return 'iswa/' + base + '/' + base + fill + rot + '.png'; 
+            break;
+          default://unknown
+            alert ("unknown length " + cSym);
+            break;
+        }
+      }
+      callLater(.1,LoadQuery);
+    </script>
+
+  </head>
+  <body>
+<table cellpadding="5" width="100%"><tr><td valign="top"><a href="http://scripts.sil.org/OFL"><img src="media/ofl.png"></a></td><td align=middle>
+<h1>Binary SignWriting</h1>
+<h2>HTML Reference</h2>
+</td><td valign="top" align="right"><a href="http://creativecommons.org/licenses/by-sa/3.0/"><img src="media/by-sa.png"></a></td></tr></table>
+
+<div>
+<center>
+<FORM>
+<TABLE BORDER CELLPADDING=3>
+<TR>
+<TD border=0>
+Encoding 
+<SELECT id="encoding">
+<OPTION VALUE="bsw">BSW
+<OPTION VALUE="utf">UTF-8
+</SELECT>
+</td></tr>
+<tr><td colspan=2>
+<textarea id="input" cols="60" rows="10"></textarea>
+</td></tr>
+<tr><td colspan=2>
+<INPUT TYPE=BUTTON OnClick="ViewOutput();" VALUE="View">
+<INPUT TYPE=BUTTON OnClick="DetailOutput();" VALUE="Detail">
+<INPUT TYPE=BUTTON OnClick="SortOutput();" VALUE="Sort">
+<INPUT TYPE=BUTTON OnClick="IndexOutput();" VALUE="Index">
+<INPUT TYPE=BUTTON OnClick="FrequencyOutput();" VALUE="Frequency">
+<INPUT TYPE=BUTTON OnClick="FormatOutput();" VALUE="Format">
+</td></tr></table>
+</FORM>
+</div>
+
+<div id="output"></div>
+
+<br clear="all">
+<div id="reference">
+<br><hr><center>
+Welcome to the core reference for the open standards of SignWriting.<br>
+<hr></center>
+<h2>This reference</h2>
+<ul><li>documents the entire <a href="iswa">ISWA 2010</a>
+<li>documents the character encoding model called Binary SignWriting revision 3
+<li>analyzes and displays SignWriting encoded in BSW or UTF-8.
+</ul>
+
+<h2>You can</h2>
+<ul><li><a href="http://www.signbank.org/bsw.zip">download this reference</a>.  14 MB zipped, 150 MB unzipped, HTML, and JavaScript. Platform independant.
+<li><a href="http://www.signbank.org/bsw">view this reference online</a>.
+<li>install this reference on an internal network or the internet at large.
+</ul>
+<hr><center>
+<h1>Binary SignWriting</h1>
+<h2>Script Encoding Model</h2>
+<h3>Revision 3</h3>
+</center>
+
+<hr><h2>Sign language</h2>
+Sign language is a visual method of communication.  The meaning derived from sign language occurs in several ways:
+<ul><li><b>Shape</b>: hands, face, and body
+<li><b>Movement</b>: changing shapes and positions
+<li><b>Position</b>: spatial relationship between shapes and movement
+<li><b>Center of gravity</b>: body weight shifts
+</ul>
+
+<hr><h2>SignWriting</h2>
+SignWriting is the universal script for all of the world's sign languages.  The fundamental writing unit (grapheme) of SignWriting is called a symbol.  The symbols of SignWriting are iconic in nature, because there is a link between the form of the symbol and its meaning. 
+
+<p>Symbols come in several flavors: writing, sequence , and punctuation.  Writing symbols represent shape or movement.  Writing symbols are combined spatially on two dimensional canvases to form individual signs.  This spatial writing for a sign is called the spelling or "Spatial SignSpelling".  
+
+<p>Sequence symbols represent detailed locations and are only used in the sequence or "SignSpelling Sequence" of a sign.  The SignSpelling Sequence is a list of writing symbols and sequence symbols.  Most often, the symbols of the sequence are the same as used in the spelling, so it will not include sequence symbols.  Sequence symbols are not used for everyday writing, but may be useful for sorting large dictionaries, refining animation, simplifying translation between scripts and notation systems, and for detailed analysis of location sometimes needed in linguistic research.  
+
+<p>Punctuation symbols are used between signs, always alone in the middle lane. 
+
+<p>Writing symbols can be divided into two groups, centering and non-centering.  Head and torso symbols are centering symbols.  The rest are non-centering.  Centering symbols are important for determining the center of a sign. Each sign can be enclosed by a smallest possible rectangle called a bounding box.  If a sign only has non-centering symbols, its center is the center of its bounding box.
+<br><img src="media/noncentering.png">
+
+<p>If a sign contains centering symbols, then a centering bounding box is defined which only encloses the centering symbols of the sign. The center for such a sign is the center of its centering bounding box.
+<br><img src="media/centering.png">
+
+<p>The completed signs are listed sequentially either horizontally or vertically.  The signs are aligned based on their centers.  
+
+<p>To represent changes to the center of gravity of a signer, SignWriting uses lanes for vertical writing.  By default, signs are written in the middle lane with the center of the sign lined up with the center of the middle lane. For body weight shifts to the left or the right, the center of a sign can be offset to line up with the center of a left or right lane.  The left and right lanes use a fixed horizontal offset from the middle lane.
+
+<hr><h2>International SignWriting Alphabet 2010</h2>
+The latest symbol set of SignWriting is called the Internationsl SignWriting Alphabet 2010.  The ISWA uses a 4 level hierarchy.  The top level defines <a href="iswa">7 Categories</a>.  Under the categories are the 30 SymbolGroups.  Under the SymbolGroups are the 652 BaseSymbols.  Under each BaseSymbol, there are a maximum of 96 valid symbols (6 fills by 16 rotations).
+
+<hr>
+<h2>Abstract Character Repertoire</h2>
+Binary SignWriting defines a repertoire of abstract characters.  A character is a unit of information.  A character can represent a printable symbol (grapheme) or a non-printable concept (control character).  The printable characters of Binary SignWriting are the BaseSymbols of the <a href="iswa">ISWA 2010</a>.  The non-printable characters fall into 3 catagories: modifiers, structural markers and <a href="iswa/numbers.html">number characters</a>.
+
+<h3>Structural Markers</h3>
+<ul>
+<li>Left Lane SignBox Marker - a marker for a new sign in the left lane.
+<li>Middle Lane SignBox Marker - a marker for a new sign in the middle lane.
+<li>Right Lane SignBox Marker - a marker for a new sign in the right lane.
+<li>Sequence Marker - a marker for a sequence of writing and sequence symbols.
+</ul>
+
+<h3>BaseSymbols</h3>
+<ul><li>652 BaseSymbols from the ISWA 2010
+</ul>
+
+<h3>Modifiers</h3>
+<ul>
+<li>6 fill modifiers
+<li>16 rotation modifiers
+</ul>
+
+<h3>Number Characters</h3>
+<ul>
+<li>-299 to 300 
+</ul>
+
+<h2>Coded Character Set</h2>
+<p>Character encoding pairs a unique code (or number) to each character.  Binary SignWriting uses fixed width 12-bit character codes: numbers between 0 and 4095 that can be represented with three hexadecimal characters.
+<h3>Structural Makers</h3>
+<ul><li>0fa - left lane signbox marker
+<li>0fb - middle lane signbox marker
+<li>0fc - right lane signbox marker
+<li>0fd - sequence marker
+</ul>
+
+<h3>BaseSymbols</h3>
+<ul><li>100 to 38b for sequentially numbered BaseSymbols
+</ul>
+
+<h3>Modifiers</h3>
+<ul><li>38c to 391 for fill modifiers
+<li>392 to 3a1 for rotation modifiers
+</ul>
+
+<h3>Number Characters</h3>
+<ul><li>3a2 to 4cc for negative numbers -299 to -1
+<li>4cd for zero
+<li>4ce to 5f9 for positive numbers 1 to 300
+</ul>
+
+<h2>Character Encoding Form</h2>
+The Unicode standard will be used as the character encoding form.  The codes for the set are shifted twice.  First to shift the range and second to shift the plane.
+
+<h3>Primary Shift</h3>
+The primary shift moves the codes to a higher range.  Each code is increased by 55,046 or d706 in hex.  This shifts the 12 bit range of 0fa - 5f9 to the 16 bit range of d800 - dcff.
+
+<h3>Secondary Shift</h3>
+There are 3 potential secondary shifts that change the plane of the codes to plane 1, 15, or 16.  Each shift is easy.  Character d800 becomes 1d800 for plane 1, fd800 for plane 15, and 10d800 for plane 16.  Plane 15 is used by default.
+
+<p>If you look at the <a href="http://unicode.org/roadmaps/smp/">roadmap for the Supplementary Multilingual Plane</a>, you'll see that room has been set aside for SignWriting in rows 1d8 thru 1db.  The next four rows are blank but set aside for notation systems in general.  If row 1dc can be reserved for SignWriting as well, this new encoding will fit properly in the space allotted.
+
+<h2>Character Encoding Scheme</h2>
+UTF-8 is a great character encoding scheme.  It's a little tricky to convert back and forth.  If you know how to encode the first character of any plane, you can create a conversion for the entire plane.
+<ul><li>For plane 1, the first character is 010000 or %f0%90%80%80 in UTF-8.
+<li>For plane 15, the first character is 0F0000 or %f3%B0%80%80 in UTF-8.
+<li>For plane 16, the first character is 100000 or %f4%80%80%80 in UTF-8.e
+</ul>
+
+<br><hr>
+<h2>Symbol Encoding</h2>
+The ISWA 2010 defines 37,812 valid symbols, each with a unique ID.  The symbol ID is a 6 part number system that is a combination of "category" - "group" - "base" - "variation" - "fill" - "rotation". Example "01-01-001-01-01-01".
+
+<p>A symbol is a specific fill and rotation of a BaseSymbol.  A symbol shares the first 4 numbers of its symbol ID with the BaseSymbol.  The fill value can range from 1 to 6, while the rotation can range from 1 to 16.  
+
+<p>Each symbol has a unique key that is 5 hexadecimals long.  The first 3 hexadecimals represent the BaseSymbol character.  The 4th hexadecimal is equal to the fill minus one.  The 5th hexadecimal is equal to the rotation minus one.
+
+<p>Each symbol has a unique code.  The first symbol has a code of 1.  Valid and invalid symbol positions are equally numbered, so 96 symbol codes are available per BaseSymbol.  Using decimal values, a symbol code can be computed: ((BaseSymbol code - 256) * 96) + ((fill - 1) * 16) + rotation.
+
+<p>It requires three characters of Binary SignWriting to represent a specific symbol.  The first character is the BaseSymbol character.  The next character is the fill modifier, with a character code equal to the fill value plus decimal 907.  The third character is the rotation modifier, with a character code equal to the rotation value plus decimal 913.  Example "100 38c 392" in hexadecimal and "󽠆 󽪒 󽪘" in UTF-8.
+
+<br><hr>
+<h2>Script Encoding Model</h2>
+<h3>Valid Data Stream</h3>
+The data stream for Binary SignWriting is a sequential list of characters.  Not all data streams are valid.  A valid stream must contain valid structures.  There are 2 main structures: signs and punctuations.  A valid punctuation data stream is three characters long that represents a punctuation symbol.
+
+<p>A sign is a much more complex structure.  It consists of a SignBox Maker with a cluster of spatial symbols and an optional sequence.  A spatial symbol is five characters long.  A writing symbol followed by 2 number characters.  A valid cluster of spatial symbols is a list of zero or more spatial symbols.  A valid sequence is a Sequence Marker followed by one or more writing symbols and/or sequence symbols.
+
+<h3>Tokens</h3>
+A token is an alternate view of a character. Each Binary SignWriting character can be represented by a single ASCII character. For Binary SignWriting, there are 15 tokens: LBRQhmdftxsPion. Case does not matter. Upper and lower cases are used to aid human scanning.
+
+<ul>
+<li>L = Left Lane SignBox Marker
+<li>B = Middle Lane SignBox Marker
+<li>R = Right Lane SignBox Marker
+<li>Q = Sequence Marker
+<li>h = Hand BaseSymbol
+<li>m = Movement BaseSymbol
+<li>d = Dynamic BaseSymbol
+<li>f = Head BaseSymbol
+<li>t = Trunk BaseSymbol
+<li>x = Limb BaseSymbol
+<li>s = Sequence BaseSymbol
+<li>P = Punctuation BaseSymbol
+<li>i = Fill Modifier
+<li>o = Rotation Modifier
+<li>n = Number Character
+</ul>
+
+A data stream for Binary SignWriting can be converted into a token stream to validate and parse the data with regular expressions.
+
+<p><table border="1" cellspacing="0" cellpadding="5" align="middle">
+<tr>
+<th>Name
+</th><th>Regular expression for token analysis
+</th><th>Description
+</th></tr>
+<tr>
+<td>SignBox Marker
+</td><td>[LBR]
+</td><td>Pick one: plain SignBox Marker, Left Lane SignBox Marker, Right Lane SignBox Maker
+</td></tr>
+<tr>
+<td>Writing BaseSymbol
+</td><td>[hmdftx]
+</td><td>Pick one: hand, movement, dynamic, head, trunk, or limb symbol
+</td></tr>
+<tr>
+<td>Spatial Symbol
+</td><td>[hmdftx]ionn
+</td><td>Writing BaseSymbol followed by a fill modifier, rotaion modifier and two number characters
+</td></tr>
+<tr>
+<td>Cluster
+</td><td>([hmdftx]ionn)*
+</td><td>A list of zero or more spatial symbols
+</td></tr>
+<tr>
+<td>Sequence
+</td><td>Q([hmdftxs]io)+
+</td><td>Sequence Maker followed by one or more writing symbols and/or sequence symbols
+</td></tr>
+<tr>
+<td>Sign
+</td><td>[LBR]([hmdftx]ionn)*(Q([hmdftxs]io)+)?
+</td><td>A SignBox Marker, followed by a cluster, followed by an options sequence
+</td></tr>
+<tr>
+<td>Punctuation
+</td><td>Pio
+</td><td>A punctuation BaseSymbol followed by a fill modifier and a rotation modifier
+</td></tr>
+<tr>
+<td>SignText
+</td><td>([LBR]([hmdftx]ionn)*(Q([hmdftxs]io)+)?|Pio)+
+</td><td>A list of signs and punctuation
+</td></tr>
+</table>
+
+<h3>Character Reference Table</h3>
+<table border="1" cellspacing="0" cellpadding="5">
+<tr>
+<th>Name
+</th><th>Token
+</th><th>BSW
+</th><th>UTF
+</th><th>Notes
+</th></tr>
+<tr>
+<td>Left Lane SignBox Marker
+</td><td>L
+</td><td>0fa
+</td><td>󽠀
+</td><td>A marker for a new sign in the left lane
+</td></tr>
+<tr>
+<td>Middle Lane SignBox Marker
+</td><td>B
+</td><td>0fb
+</td><td>󽠁
+</td><td>A marker for a new sign in the middle lane
+</td></tr>
+<tr>
+<td>Right Lane SignBox Marker
+</td><td>R
+</td><td>0fc
+</td><td>󽠂
+</td><td>A marker for a new sign in the right lane
+</td></tr>
+<tr>
+<td>Sequence Marker
+</td><td>Q
+</td><td>0fd
+</td><td>󽠃
+</td><td>A marker for a sequence of writing and sequence symbols
+</td></tr>
+<tr>
+<td>Hand BaseSymbols
+</td><td>h
+</td><td>100 - 204
+</td><td>󽠆 - 󽤊
+</td><td>A hand BaseSymbol from category 1.
+</td></tr>
+<tr>
+<td>Movement BaseSymbols
+</td><td>m
+</td><td>205 - 2f6
+</td><td>󽤋 - 󽧼
+</td><td>A movmement BaseSymbol from category 2.
+</td></tr>
+<tr>
+<td>Dynamic BaseSymbols
+</td><td>d
+</td><td>2f7 - 2fe
+</td><td>󽧽 - 󽨄
+</td><td>A dynamic BaseSymbol from category 3.
+</td></tr>
+<tr>
+<td>Head BaseSymbols
+</td><td>f
+</td><td>2ff - 36c
+</td><td>󽨅 - 󽩲
+</td><td>A head BaseSymbol from category 4. Responsible for primary centering.
+</td></tr>
+<tr>
+<td>Trunk BaseSymbols
+</td><td>t
+</td><td>36d - 375
+</td><td>󽩳 - 󽩻
+</td><td>A trunk BaseSymbol from category 5, SymbolGroup 27. Responsible for secondary centering.
+</td></tr>
+<tr>
+<td>Limb BaseSymbols
+</td><td>x
+</td><td>376 - 37e
+</td><td>󽩼 - 󽪄
+</td><td>A limb BaseSymbol from category 5, SymbolGroup 28. Responsible for tertiary centering.
+</td></tr>
+<tr>
+<td>Sequence BaseSymbols
+</td><td>s
+</td><td>37f - 386
+</td><td>󽪅 - 󽪌
+</td><td>A non-spatial BaseSymbol that can only be used after the Sequence marker
+</td></tr>
+<tr>
+<td>Punctuation BaseSymbols
+</td><td>P
+</td><td>387 - 38b
+</td><td>󽪍 - 󽪑
+</td><td>A non-spatial symbol always used by itself in the middle lane
+</td></tr>
+<tr>
+<td>Fill Modifiers
+</td><td>i
+</td><td>38c - 391
+</td><td>󽪒 - 󽪗
+</td><td>A fill modifier for a BaseSymbol
+</td></tr>
+<tr>
+<td>Rotation Modifiers
+</td><td>o
+</td><td>392 - 3a1
+</td><td>󽪘 - 󽪧
+</td><td>A rotation modifier for a BaseSymbol
+</td></tr>
+<tr>
+<td>Number Characters
+</td><td>n
+</td><td>3a2 - 5f9
+</td><td>󽪨 - 󽳿
+</td><td>Number range -299 thru 300 as characters to avoid collision when parsing
+</td></tr>
+</table>
+<br>
+<h3>Hello world example</h3>
+<p>The following is ASL for "Hello World."<br>
+<a href="?bsw=0fb14c38e3924a54bd27138c3984bb4cf 0fb18738c39c4c04c618738c3934b94b020538c3924d14b32ef38c3924c949c 38838c392#v">0fb14c38e3924a54bd27138c3984bb4cf 0fb18738c39c4c04c618738c3934b94b020538c3924d14b32ef38c3924c949c 38838c392</a>
+
+<p>The Token stream for this is:<br>
+<a href="?bsw=0fb14c38e3924a54bd27138c3984bb4cf 0fb18738c39c4c04c618738c3934b94b020538c3924d14b32ef38c3924c949c 38838c392#d">Bhionnmionn Bhionnhionnmionnmionn Pio</a>
+
+<p>If we consider the first sign, we find "Bhionnmionn".  The first token is "B", a SignBox Marker in the middle lane.  Next, there are 2 spatial symbols "hionn" and "mionn".  
+
+<p>The next sign starts with the second "B" which has 4 spatial symbols.  Finally, at the end we find a punctuation symbol "Pio".
+
+<hr><h2>Reference Guide</h2>
+This reference guide documents and analyzes valid Binary SignWriting.
+
+<h3>View Screen</h3>
+The view screen displays sign text using either BSW or UTF-8.  The sign text is displayed vertically with lanes in columns.
+
+<h3>Detail Screen</h3>
+The detail screen gives a detailed breakdown of the sign text.  First, the text is broken down into structures of signs and punctuation.  Next, each character of a sign (or punctuation) is detailed with BSW, UTF-8, Token and value data.
+ 
+<h3>Sort Screen</h3>
+The sort screen shows the sort for a group of signs using the SignSpelling Sequence.  The sequence data is either contained in the sign data or automatically created from the symbols used in the Spatial SignSpelling.  To create the automated sequence, the writing symbols are stripped from the spelling and sorted into a list.
+
+<h3>Index Screen</h3>
+The Index screen shows an alternate sort for a group of signs.  For each sign, a sorted list of BaseSymbols is created according to the symbols used in the Spatial SignSpelling.  The signs are sorted based on these BaseSymbol lists.
+
+<h3>Frequency Screen</h3>
+The Frequency screen has 2 sections.  The BaseSymbol Frequency for All Signs sections shows the counts for BaseSymbols used in all of the Spatial SignSpellings, the counts for the BaseSymbols used in all of the SignSpelling Sequence, and the counts for all of the Punctuation BaseSymbols.
+
+<p>The Symbol Frequency by BaseSymbol gives a usage count for each BaseSymbol and lists the symbols used from that BaseSymbol.
+
+<h3>Format Screen</h3>
+The Format screen shows 4 representations of the same data: BSW, Unicode PUA, SignWriting Cartesian Markup, and XML.  BSW and Unicode PUA are actively supported.  The SignWriting Cartesian Markup is waiting for an official proposal and a technical note.  The XML is for informational purposes only.
+
+<p><hr><br>
+<center>
+<b>Copyright 2007-2010 Stephen E Slevinski Jr.<br>
+ Some Rights Reserved.</b><br>
+Except where otherwise noted, this work is licensed under<br>
+<a href="http://creativecommons.org/licenses/by-sa/3.0/">
+Creative Commons Attribution ShareAlike 3.0</a>
+</center></body></html>

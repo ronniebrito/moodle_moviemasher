@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moviemasher>
+	<control symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Icon' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf#Separator' />
+
+	<!-- NEW CONTROL -->
+	<control tooltip='New Mash' pattern='New'
+		trigger='player.new='
+		disable="player.dirty=1" 
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@Text" 
+		icon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOff"
+		overicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOn"
+		disicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnDis"
+		fill='stretch' width='45' textalign='center' textsize="11" textcolor='333333'
+	/>
+	<!-- REVERT CONTROL -->
+	<control tooltip='Revert Mash' pattern='Revert'
+		trigger='player.revert='
+		disable="player.dirty=0" 
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@Text" 
+		icon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOff"
+		overicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOn"
+		disicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnDis"
+		fill='stretch' width='45' textalign='center' textsize="11" textcolor='333333'
+	/>
+	<!-- SAVE CGI CONTROL -->
+	<control tooltip='Save Mash' pattern='Save' id='saver'
+		tie="player.mash" media="1" mash="1" 
+		disable="player.dirty=0|renderer.progress!=null" 
+		url="media/php/save.php?id={player.mash.id}" 
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
+		icon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOff"
+		overicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOn"
+		disicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnDis"
+		fill='stretch' width='45' textalign='center' textsize="11" textcolor='333333'
+	/>
+	
+	<!-- RENDER CGI CONTROL -->
+	<control tooltip="Render Mash" pattern='Render' id='renderer'
+		
+		disable="renderer.progress!=null|player.length=0|player.dirty=1" 
+		url="media/php/decode.php?id={player.mash.id}" 
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
+		icon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOff"
+		overicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOn"
+		disicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnDis"
+		fill='stretch' width='45' textalign='center' textsize="11" textcolor='333333'
+	/>
+	<control tie="renderer.progress" hide="renderer.progress=null" width='200' symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@Slider" back='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@ScrubBackOff' reveal='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@ScrubBackOn' />
+	<control pattern="{status}" bind="renderer.status" width='*' symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@Text" forecolor='FFFFFF' textalign="left" textsize="11" wrap="0" />
+
+	<!-- ONLY REMOVE IF YOU PROVIDE SOME OTHER OBVIOUS LINK TO MOVIEMASHER.COM -->
+	<control tooltip='Movie Masher' id='logo'
+		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
+		get='javascript:window.open("LICENSE.html", "moviemasher_license", "width=540,height=540,status=1,scrollbars=1");'
+		icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf#MovieMasher' 
+	/>			
+
+</moviemasher>

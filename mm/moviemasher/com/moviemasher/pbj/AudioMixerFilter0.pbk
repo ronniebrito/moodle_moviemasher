@@ -1,0 +1,26 @@
+<languageVersion : 1.0;>
+
+kernel AudioMixerFilter
+<   namespace : "stealth";
+    vendor : "stealth";
+    version : 1;
+    description : "Audio mixer with 12 tracks";
+>
+{
+    input image4 track1;
+  
+    
+    parameter float vol1;
+ 
+    
+    output pixel4 dst;
+
+    void
+    evaluatePixel()
+    {
+        pixel4 tmp1 = sampleNearest(track1,outCoord()) * vol1;
+        
+       
+        dst = tmp1;
+    }
+}

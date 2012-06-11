@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moviemasher config='media/xml/source_module.xml'>
+	<!-- STATIC MEDIA SOURCES --> 
+	<source id='video' config='media/xml/media_video.xml' />
+	<source id='audio' config='media/xml/media_audio.xml' />
+	<source id='image' config='media/xml/media_image.xml' />
+	<source id='SL'  url='media/php/media.php?group={group}&amp;label={terms}&amp;index={index}&amp;count={count}' symbol='../../moviemasher/com/moviemasher/source/RecorderSource/stable.swf@RecorderSource' /> 
+   
+   <!--source id='SW'   fields="entry[media:group/yt:duration/@seconds&lt;=960]" symbol='../../moviemasher/com/moviemasher/source/SignWritingSource/stable.swf@SignWritingSource' /--> 
+	
+   <source id='youtube'  fields="entry[media:group/yt:duration/@seconds&lt;=960]" symbol='../../moviemasher/com/moviemasher/source/YouTubeSource/stable.swf@YouTubeSource' />    
+   <source id='flickr' is_commons="1" api_key="9172beed68f9d7479f3bf7bb296a6c40" symbol='../../moviemasher/com/moviemasher/source/FlickrSource/stable.swf@FlickrSource' />	
+   <source id='effect' config='media/xml/media_effect.xml' />
+</moviemasher>
+

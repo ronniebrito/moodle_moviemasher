@@ -1,0 +1,359 @@
+<?php  // $Id: view.php,v 1.6.2.3 2009/04/17 22:06:25 skodak Exp $
+    
+    /**
+     * This page prints a particular instance of moviemasher
+     *
+     * @author  Your Name <your@email.address>
+     * @version $Id: view.php,v 1.6.2.3 2009/04/17 22:06:25 skodak Exp $
+     * @package mod/moviemasher
+     */
+    
+    require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
+    require_once(dirname(__FILE__).'/lib.php');    
+    $id = optional_param('id', 0, PARAM_INT); // course_module ID, or
+    $a  = optional_param('a', 0, PARAM_INT);  // moviemasher instance ID    
+    if ($id) {
+        if (! $cm = get_coursemodule_from_id('moviemasher', $id)) {
+            error('Course Module ID was incorrect');
+        }
+    
+        if (! $course = get_record('course', 'id', $cm->course)) {
+            error('Course is misconfigured');
+        }
+    
+        if (! $moviemasher = get_record('moviemasher', 'id', $cm->instance)) {
+            error('Course module is incorrect');
+        }    
+    } else if ($a) {
+        if (! $moviemasher = get_record('moviemasher', 'id', $a)) {
+            error('Course module is incorrect');
+        }
+        if (! $course = get_record('course', 'id', $moviemasher->course)) {
+            error('Course is misconfigured');
+        }
+        if (! $cm = get_coursemodule_from_instance('moviemasher', $moviemasher->id, $course->id)) {
+            error('Course Module ID was incorrect');
+        }    
+    } else {
+        error('You must specify a course_module ID or an instance ID');
+    }
+    	
+    require_login($course, true, $cm);    
+    add_to_log($course->id, "moviemasher", "view", "view.php?id=$cm->id", "$moviemasher->id");
+    
+    /// Print the page header
+    $strmoviemashers = get_string('modulenameplural', 'moviemasher');
+    $strmoviemasher  = get_string('modulename', 'moviemasher');
+    
+    $navlinks = array();
+    $navlinks[] = array('name' => $strmoviemashers, 'link' => "index.php?id=$course->id", 'type' => 'activity');
+    $navlinks[] = array('name' => format_string($moviemasher->name), 'link' => '', 'type' => 'activityinstance');
+    
+    $navigation = build_navigation($navlinks);
+    
+    print_header_simple(format_string($moviemasher->name), '', $navigation, '', '', true,
+                  update_module_button($cm->id, $course->id, $strmoviemasher), navmenu($course, $cm));
+    
+ 
+	include_once('./getparams.php');
+
+	$mash = get_record('moviemasher_mash', 'user_id', $USER->id, 'moviemasher_id', $moviemasher->id);
+
+	if(!$mash){
+		$mash->timecreated = time();
+		$mash->moviemasher_id = $moviemasher->id;		
+		$mash->user_id = $USER->id;
+		$mash->id =  insert_record('moviemasher_mash', $mash);	
+		$mash->mash = str_replace('{ID}', '\"'.$mash->id.'\"',$moviemasher->default_mash);
+		$mash->telepromptspeed = 10;
+		$mash->telepromptfontsize = 18;
+		$mash->text = $moviemasher->telepromptext;
+		update_record('moviemasher_mash', $mash);	
+	}
+	?>
+
+    
+<script type="text/javascript" src="jquery.min.js"></script> 
+<script type="text/javascript">
+		$(document).ready(function() {		
+				//seleciona os elementos a com atributo name="modal"
+				$('a[name=modal]').click(function(e) {
+					e.preventDefault();	
+					showRecorder();
+				});				
+				//se o botãoo fechar for clicado
+				$('.window .close').click(function (e) { 
+				//cancela o comportamento padrão do link
+				e.preventDefault();
+				$('#mask, .window').hide();				
+				$('#editor_frame').show();
+				});				
+				//se div#mask for clicado
+				$('#mask').click(function () {	
+				$(this).hide();
+				$('.window').hide();
+				$('#editor_frame').show();
+				//moviemasher('editor_frame', 'moviemasher_editor').evaluate('browser.source=SL');
+				});
+				
+				
+	document.getElementById('StartR').style.visibility = 'visible';	
+	document.getElementById('StopR').style.visibility = 'hidden';
+	
+		});
+		
+	
+</script>
+
+<script>
+		function showRecorder(){
+				//armazena o atributo href do link
+				var id = "#dialog";								
+				//armazena a largura e a altura da tela
+				var maskHeight = $(document).height();
+				var maskWidth = $(window).width();
+				//Define largura e altura do div#mask iguais ás dimensões da tela
+				$('#mask').css({'width':maskWidth,'height':maskHeight});				
+				//efeito de transição
+				$('#mask').fadeIn(100);
+				$('#mask').fadeTo("fast",0.8);				
+				//armazena a largura e a altura da janela
+				var winH = $(window).height();
+				var winW = $(window).width();
+				//centraliza na tela a janela popup
+				$(id).css('top',  winH/2-$(id).height()/2);
+				$(id).css('left', winW/2-$(id).width()/2);
+				//efeito de transição
+				$(id).fadeIn(100);				
+				document.getElementById('OK').style.visibility = 'hidden';		
+				document.getElementById('NOK').style.visibility = 'hidden';	
+		}
+		function hideRecorder(){
+			
+			
+		}
+</script>
+<script type="text/javascript">
+
+
+
+function moviemasher(frame, id)
+{	
+	var fr =  document.getElementById(frame).contentDocument;
+	return fr.getElementById(id);
+}
+
+function evaluateExpression(form)
+{
+	var expression = form.expression.value;
+	 
+	if (expression.length)
+	{
+		form.result.value = moviemasher().evaluate(expression);
+	}
+	return false;
+}
+
+function setMash(mash){
+	moviemasher().evaluate('mash.xml='+mash);	
+}
+
+
+function startRecord(){
+
+<?php  if(($moviemasher->teleprompttext)||($mash->text )){ ?>
+ // reader	teleprompter 
+	var fr =  document.getElementById('player_frame').contentWindow;
+	fr.play();
+<?php }else{ ?>
+// player	
+	var startPosition = moviemasher('player_frame', 'moviemasher_player').evaluate('player.location');
+	moviemasher('player_frame', 'moviemasher_player').evaluate('player.play=1');	
+<?php } ?>	
+
+	var reco =  document.getElementById('recorder_frame').contentWindow;
+	reco.document.getElementById('recorder').startRecording();		
+	document.getElementById('StartR').style.visibility = 'hidden';	
+	document.getElementById('StopR').style.visibility = 'visible';	
+	document.getElementById('OK').style.visibility = 'hidden';		
+	document.getElementById('NOK').style.visibility = 'hidden';	
+	return true;	
+}
+
+function stopRecord(){	
+<?php  if(($moviemasher->teleprompttext)||($mash->text )){ ?>
+ // reader	teleprompter 
+ 	var fr =  document.getElementById('player_frame').contentWindow;
+	fr.pausar();
+<?php }else{ ?>
+// player de video	
+	var startPosition = moviemasher('player_frame', 'moviemasher_player').evaluate('player.location');
+	moviemasher('player_frame', 'moviemasher_player').evaluate('player.play=0');
+<?php } ?>	
+
+// recorder	
+	document.getElementById('StartR').style.visibility = 'visible';		
+	document.getElementById('OK').style.visibility = 'visible';		
+	document.getElementById('NOK').style.visibility = 'visible';	
+	document.getElementById('StopR').style.visibility = 'hidden';
+	var reco =  document.getElementById('recorder_frame').contentWindow;
+	//alert(reco);
+	reco.document.getElementById('recorder').stopRecording();
+	return true;
+}
+
+
+function positiveCallback(){	
+  dummyimage = new Image();
+  dummyimage.src = 'recorderCallback.php?id=<?php echo $mash->id;?>&accept=1';
+  close_gravador();
+  return true;
+}
+
+
+function negativeCallback(){	
+  dummyimage = new Image();
+  dummyimage.src = 'recorderCallback.php?id=<?php echo $mash->id;?>&delete=1';
+ 	close_gravador();
+	return true;
+}
+
+
+
+function close_gravador(){	
+	$('#mask, .window').hide();				
+	$('#editor_frame').show();
+	moviemasher('editor_frame','moviemasher_editor').evaluate('browser.source=SL');					
+}
+
+function editSW(bsw){
+		document.getElementById('SWEditor_frame').src= "swmp/swis/signtext.php?bsw="+bsw;
+		var id = "#dialogSWEditor";								
+				//armazena a largura e a altura da tela
+				var maskHeight = $(document).height();
+				var maskWidth = $(window).width();
+				//Define largura e altura do div#mask iguais ás dimensões da tela
+				$('#mask').css({'width':maskWidth,'height':maskHeight});				
+				//efeito de transição
+				$('#mask').fadeIn(100);
+				$('#mask').fadeTo("fast",0.8);				
+				//armazena a largura e a altura da janela
+				var winH = $(window).height();
+				var winW = $(window).width();
+				//centraliza na tela a janela popup
+				$(id).css('top',  winH/2-$(id).height()/2);
+				$(id).css('left', winW/2-$(id).width()/2);
+				//efeito de transição
+				$(id).fadeIn(100);
+
+}
+function closeSWEditor(){
+	$('#mask, .window').hide();
+}
+</script>
+<style>/* O z-index do div#mask deve ser menor que do div#boxes e do div.window */
+	#mask {
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:9000;
+	background-color:#000;
+	display:none;
+	}
+	
+	#boxes .window {
+	position:absolute;
+	width:860px;
+	height:650px;
+	display:none;
+	z-index:9999;
+	padding:5px;
+	background-color:black;
+	color:white;
+	}
+	
+	/* Personalize a janela modal aqui. Você pode adicionar uma imagem de fundo. */
+	#boxes #dialog {	
+	}
+	#boxes #dialogSWEditor {	
+		color:white;
+
+		background-color:white;
+	}		
+	#boxes #dialog a{
+		color:white;
+		font-weight:bold;
+	}				
+	/* posiciona o link para fechar a janela */
+	.close {
+	display:block;
+	text-align:right;
+	}
+</style>
+
+    <!--a href="#" onclick="javascript:alert(moviemasher('editor_frame', 'moviemasher_editor').evaluate('mash.xml'));">mostraMash</a-->
+<!-- #dialog é o id do DIV definido como mostrado a seguir  -->
+<!--a href="#dialog" name="modal">Traduzir</a-->
+
+<div id="boxes">
+
+<!-- #personalize sua janela modal aqui -->
+
+<div id="dialog" class="window">
+<!-- Botão para fechar a janela tem class="close" -->
+<a href="#" class="close" onclick="close_gravador();">Fechar [X]</a>
+
+
+<?php
+//TODO fazer ligacao com os dados da atividade em questao
+
+
+if(($moviemasher->teleprompttext)||($mash->text )){ // Define if $playfile is a text or video
+    $playfile = $CFG->wwwroot."/mod/moviemasher/reader.php?userid=".$USER->id."&cm_id=".$cm->id."&mash_id=".$mash->id;
+}else{
+    $playfile = $CFG->wwwroot."/mod/moviemasher/mm/example/player/index.php?userid=".$USER->id."&cm_id=".$cm->id."&mash_id=".$mash->id;
+}
+
+?>
+  <iframe id="player_frame" id="player_frame" style="float:left;"  src="<?php echo $playfile; ?>" width="500px" height="600px"> </iframe>
+
+ <iframe id="recorder_frame" style="float:left;" src="<?php echo $CFG->wwwroot; ?>/mod/moviemasher/Recorder/web/recorder.php?id=<?php echo $cm->id; ?>" width="330px" height="600px"> </iframe>
+  
+  <br />  <a id="showTexto" href="#" onclick="javascript:document.all.player_frame.src='<?php echo $CFG->wwwroot."/mod/moviemasher/reader.php?userid=".$USER->id."&cm_id=".$cm->id."&mash_id=".$mash->id;?>'">Mostrar texto</a> 
+ <a id="showVideo" href="#" onclick="javascript:document.all.player_frame.src='<?php echo $CFG->wwwroot."/mod/moviemasher/mm/example/player/index.php?userid=".$USER->id."&cm_id=".$cm->id."&mash_id=".$mash->id;?>'">Mostrar video</a> 
+
+	<a id="StartR" href="#" onclick="javascript:startRecord();">Gravar</a> 
+   
+   <a id="StopR" href="#" onclick="javascript:stopRecord();">Parar</a> 
+    
+   <div style="float:right;" >
+   <a  id="OK" style="visibility:hidden" href="#" onclick="javascript:positiveCallback();">Salvar </a> 
+    &nbsp;
+   <a  id="NOK" style="visibility:hidden" href="#" onclick="javascript:negativeCallback();"> &nbsp;  &nbsp;  Excluir</a>
+   </div>
+</div>
+<div id="dialogSWEditor" class="window">
+
+  <iframe id="SWEditor_frame"  style="float:left;"  src="swmp/swis/signtext.php?bsw=" width="100%" height="600px"> </iframe>
+</div>
+<!-- Não remova o div#mask, pois ele é necessário para preencher toda a janela -->
+<div id="mask"></div>
+</div>    
+<?php
+$context = get_context_instance(CONTEXT_MODULE, $cm->id);
+//var_dump(has_capability('mod/moviemasher:grade', $context));
+if (has_capability('mod/moviemasher:grade', $context)){
+	echo '<a  href="'.$CFG->wwwroot.'/mod/moviemasher/submissions.php?id='.$cm->id .'" > Envios </a><br>';
+}
+?>
+
+	 <iframe  id="editor_frame" src="<?php echo $CFG->wwwroot; ?>/mod/moviemasher/mm/example/moodle/index.php?userid=<?php echo $USER->id; ?>&cm_id=<?php echo $cm->id; ?>&mash_id=<?php echo $mash->id; ?>" width="100%" height="620px"> </iframe>     
+     
+     
+    <?php
+	
+	//include ("./moviem.php");
+    /// Finish the page
+    print_footer($course);
+    
+?>

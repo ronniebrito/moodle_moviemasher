@@ -1,0 +1,53 @@
+
+Movie Masher Installation
+-------------------------
+
+Please note that all of these example deployments come preinstalled on Movie Masher Server within
+Amazon's EC2 infrastructure. See moviemasher.com for information on how to launch up your own
+instance and customize it for your project. 
+
+The examples vary in complexity and server requirements... By far the simplest is 'static' since it
+uses no CGIs or APIs. The 'actionscript' and 'javascript' examples add the ability to control the
+editing interface externally through these languages. The 'flickr' and 'youtube' examples
+demonstrate connecting to external APIs for content. 
+
+By relying on CGI scripts the 'browse', 'save' and 'upload' examples add various hooks that can be
+extended to interface with existing content management systems. And finally the 'server' example
+puts these functions together to demonstrate a simple content flow, incorporating preprocessing of
+uploaded media and downloading of rendered mash in true video format.
+
+
+moviemasher:
+	example:
+		actionscript: loads the Movie Masher applet through another SWF
+		browse: searches through media XML files dynamically
+		flickr: search and display content from Flickr
+		javascript: loads and controls the Movie Masher applet through JavaScript
+		media: demo assets and JavaScript shared by several examples
+		save: writes mash data to file system
+		server: uses MovieMasher classes to render mashes
+		share: demo of mash playback within Facebook wall
+		static: simplest example requires no CGI
+		upload: transfers file to server
+		youtube: search and display video from YouTube
+	INSTALL.txt: this file
+	moviemasher: Applet SWF files
+	private: only used for server example
+		MovieMasher: classes used by PHP scripts in some examples
+		MovieMasher.xml: XML configuration for PHP scripts and classes
+		MovieMasherLog: directory for logs
+	source: FLAs, fonts, scripts and other source material
+	
+To install the simpler examples that don't use CGI (actionscript, flickr, javascript, static,
+youtube), please do the following:
+
+* Copy the /example and /moviemasher directories to a publicly accessible directory on a web server
+* Load the example's index page in a browser through the web server (examples do not run locally!)
+
+To install all other examples, please also do the following:
+
+* Install PHP5 if it's not already
+* Follow further directions at the end of each example's README.txt file
+
+Further documentation of the whole system is available on the moviemasher.com site.
+

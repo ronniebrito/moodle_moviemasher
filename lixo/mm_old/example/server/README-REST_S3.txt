@@ -1,0 +1,30 @@
+
+REST-S3 Example Read Me
+-----------------------
+
+Please see the README.txt file in the same directory as this file for prerequisite information and
+installation steps. Addtional explanation is also available in the online documentation:
+
+http://www.moviemasher.com/doc/?page=mmserver&sub=rest_s3
+
+To install for REST S3 deployments:
+
+* Make sure your Amazon account is signed up for S3
+* Create the S3 bucket (referenced below as MY_BUCKET_NAME)
+* Server should be launched in a security group that allows access on port 80 and 443
+* Server should be launched with a keypair, and the private key is needed to sign REST requests
+* Copy the private key to your server, and make sure it's readable by the web server process
+* Set the Client and File options in private/MovieMasher.xml to REST and S3
+* Set the RESTKeyPrivate option in private/MovieMasher.xml to the path to the private key
+* Set the RESTEndPoint option in private/MovieMasher.xml to the Public DNS Name of your EC2 instance
+* Set the S3Bucket option in private/MovieMasher.xml to MY_BUCKET_NAME
+* Set the HostMedia option in private/MovieMasher.xml to MY_BUCKET_NAME.s3.amazonaws.com
+* Set the AWSAccessKeyID and AWSSecretAccessKey options in private/MovieMasher.xml 
+* Install the following PHP module, if not already installed:
+	openssl
+If this is impractical, the following script can be rewritten to utilize other libraries:
+	/private/MovieMasher/lib/cryptutils.php
+* Install the following PHP library to private/, if not already installed:
+	Zend 
+If this is impractical, the following script can be rewritten to utilize other libraries:
+	/private/MovieMasher/lib/s3utils.php

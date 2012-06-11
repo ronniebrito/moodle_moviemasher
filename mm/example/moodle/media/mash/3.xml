@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<moviemasher>
+  <mash id="3" crop="1" label="Example Mash" quantize="10" width="640" height="336">
+    <clip type="effect" id="signlanguageeffect" track="1" start="44" length="50" lengthseconds="5" label="Sign Language">
+      <clip type="video" id="63" audio="0" trimend="0" volume="" track="-1" label="2_1314650828" trimstart="0" fill="crop" start="0" length="101"/>
+    </clip>
+    <clip type="effect" id="signlanguageeffect" track="1" start="180" label="Sign Language" lengthseconds="40" length="400" media="[object Media]">
+      <clip type="video" id="afce095da2ead65c23f885e46a6e1df3" audio="0" label="Previs&#xC3;&#xA3;o do tempo traduzida para Libras - Janine" trimend="0" volume="" fill="stretch" track="-1" trimstart="0" start="0" length="560"/>
+    </clip>
+    <clip type="video" id="ace05e8542c4aaeba90258a7f39a5f95" label="Rosana Jatob&#xC3;&#xA1; - Previs&#xC3;&#xA3;o do Tempo [Jornal Nacional]" trimend="0" audio="1" volume="0,70,100,70" fill="stretch" track="0" trimstart="0" start="0" length="580"/>
+    <media group="effect" type="effect" id="signlanguageeffect" label="Sign Language" symbol="../../moviemasher/com/moviemasher/module/All/stable.swf@Composite" icon="../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Composite" scale="25,25" position="87,25" rotate="0" editable="composites"/>
+    <media label="Rosana Jatob&#xC3;&#xA1; - Previs&#xC3;&#xA3;o do Tempo [Jornal Nacional]" id="ace05e8542c4aaeba90258a7f39a5f95" duration="58" type="video" url="ImcABBOuETc.youtube" icon="http://i.ytimg.com/vi/ImcABBOuETc/default.jpg" audio="1"/>
+    <media label="Previs&#xC3;&#xA3;o do tempo traduzida para Libras - Janine" id="afce095da2ead65c23f885e46a6e1df3" duration="56" type="video" url="ocJLwF1zulo.youtube" icon="http://i.ytimg.com/vi/ocJLwF1zulo/default.jpg" audio="1"/>
+    <media group="video" type="video" id="63" label="2_1314650828" duration="10.1" audio="http://rocha.ava.ufsc.br:8081/~ronnie/etica/moodle/file.php/2/moddata/moviemasher/8/2/63.flv" url="http://rocha.ava.ufsc.br:8081/~ronnie/etica/moodle/file.php/2/moddata/moviemasher/8/2/63.flv" icon="http://rocha.ava.ufsc.br:8081/~ronnie/etica/moodle/file.php/2/moddata/moviemasher/8/2/63.jpg" fill="crop"/>
+  </mash>
+</moviemasher>

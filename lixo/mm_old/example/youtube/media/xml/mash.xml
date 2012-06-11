@@ -1,0 +1,6 @@
+<moviemasher>
+  <mash width="320" height="240" crop="1" label="Example Mash" quantize="10" id="52b4148c2a8aec2ba2082cb177dcc52f">
+    <clip type="video" id="158d364093c0153c84bf171f4814bc04" trimstart="0" audio="1" trimend="0" volume="0,70,100,70" fill="stretch" track="0" label="David Guetta feat. Jennifer Hudson - Night Of Your life" start="0" length="2230"/>
+    <media label="David Guetta feat. Jennifer Hudson - Night Of Your life" id="158d364093c0153c84bf171f4814bc04" duration="223" type="video" url="BU2DQANlPmA.youtube" icon="http://i.ytimg.com/vi/BU2DQANlPmA/default.jpg" audio="1"/>
+  </mash>
+</moviemasher>

@@ -1,0 +1,10 @@
+[03-Jul-2010 06:43:10] PHP Warning:  file_get_contents(iswa//fffffc74fffffc6e.png) [<a href='function.file-get-contents'>function.file-get-contents</a>]: failed to open stream: No such file or directory in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 103
+[03-Jul-2010 06:43:10] PHP Warning:  imagecreatefromstring() [<a href='function.imagecreatefromstring'>function.imagecreatefromstring</a>]: Empty string or invalid image in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 103
+[03-Jul-2010 06:43:10] PHP Warning:  imagecolorstotal(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 106
+[03-Jul-2010 06:43:10] PHP Warning:  imagecolorset(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 111
+[03-Jul-2010 06:43:10] PHP Warning:  imagesx(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 122
+[03-Jul-2010 06:43:10] PHP Warning:  imagesy(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 123
+[03-Jul-2010 06:43:10] PHP Warning:  imagesx(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 192
+[03-Jul-2010 06:43:10] PHP Warning:  imagesy(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 193
+[03-Jul-2010 06:43:10] PHP Warning:  imagecopy(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 197
+[03-Jul-2010 06:43:10] PHP Warning:  imagedestroy(): supplied argument is not a valid Image resource in /home/sworg3x/public_html/signbank/swis/glyphogram_src.php on line 198

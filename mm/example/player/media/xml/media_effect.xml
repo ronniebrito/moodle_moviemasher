@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<moviemasher>
+
+	<!-- CAPTION -->
+	<media group='effect' type='effect' id='captioneffect' label='Legenda'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Caption' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Caption' 
+		padding='3'
+		longtext='Legenda texto'
+		forecolor='000000' backalpha='50' backcolor='FFFFFF' textsize='14' font='default'
+		editable='padding,font,textsize,longtext,forecolor,backcolor,backalpha,fade'
+	/>
+	
+	<!-- Sign WRITING -->
+	<media group='effect' type='effect' id='signboxeffect' label='Escrita de Sinais'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Signbox'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Signbox'
+		fade='0,0,10,100,90,100,100,0' 
+		position='75,50'
+		backcolor='FFFFFF'
+		backalpha='100'
+		editable='padding,forecolor,backcolor,backalpha,composites,size,fill'
+		fill='scale'
+		composites='SW'
+	>
+	</media>
+
+
+	<!-- SIGN LANGUAGE -->
+	<media group='effect' type='effect' id='signlanguageeffect' label='Interprete de Sinais'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Composite'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Composite'
+		fade='0,0,10,100,90,100,100,0' 
+		scale='25,25'
+		position='75,25'
+		rotate='0' 
+		editable='scale,position,composites,fade'		
+		composites='slvideo'
+	>
+	
+	<media group="video" type="video" id="slvideo" label="Video em LS" 
+			source="../media/video/ChromakeyCandle/media.mpg" url="../media/video/ChromakeyCandle/media/320x240x12/"  
+			fps="12" pattern="%.jpg" zeropadding="3" duration="9.97" audio="0"
+		/>
+	</media>
+
+
+	<!-- DISPLACEMENT -->
+	<!--media group='effect' type='effect' id='displaceeffect' label='Displace' 
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Displace' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Displace' 
+		 scale="25,25"
+		editable='scale,position,composites'
+		composites=''
+	/-->
+	
+	
+	<!-- PICTUREBOX -->
+	<media group='effect' type='effect' id='pictureboxeffect' label='Caixa de imagem'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Picturebox'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Picturebox'
+		fade='0,0,10,100,90,100,100,0' 
+		scale='50,50' position='50,50'
+		editable='fade,position,scale,composites'
+		composites='logoimage' href=''
+	>
+		<media group="image" type="image" id="logoimage" label="Logo" url="../media/image/Logo/media.png" />
+
+	</media>
+	
+	<!-- TEXTBOX -->
+	<media group='effect' type='effect' id='textboxeffect' label='Caixa de texto'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Textbox' 
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Textbox' 
+		longtext='Textbox'
+		fade='0,0,10,100,90,100,100,0' 
+		forecolor='000000' backalpha='50' backcolor='FFFFFF' textsize='14' font='default'
+		scale='50,50' position='50,50'
+		editable='fade,font,scale,position,textsize,longtext,forecolor,backalpha,backcolor'
+	/>
+	
+	<!-- CHROMAKEY -->
+	<media group='effect' type='effect' id='chromakeyeffect' label='Chroma Key'
+		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Chromakey'
+		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Chromakey'
+		forecolor='669933'
+		editable='forecolor,composites'
+		composites='chromakeyeffectvideo'
+	>
+		<media group="video" type="video" id="chromakeyeffectvideo" label="Chromakey Candle" 
+			source="../media/video/ChromakeyCandle/media.mpg" url="../media/video/ChromakeyCandle/media/320x240x12/"  
+			fps="12" pattern="%.jpg" zeropadding="3" duration="9.97" audio="0"
+		/>
+	</media>
+	
+	
+</moviemasher>

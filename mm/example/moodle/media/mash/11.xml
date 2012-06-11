@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<moviemasher>
+  <mash id="11" quantize="10" autostop="" width="640" height="336" config="media/xml/panel_player.xml">
+    <clip type="video" id="SL25" track="0" audio="http://150.162.41.4/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20436/2/25.flv" trimend="0" fill="scale" volume="0,70,100,70" trimstart="0" label="1_3_2012_18_45" length="41"/>
+    <media group="video" type="video" id="SL25" label="1_3_2012_18_45" duration="4.11" audio="http://150.162.41.4/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20436/2/25.flv" url="http://150.162.41.4/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20436/2/25.flv" icon="http://150.162.41.4/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20436/2/25.jpg" fill="scale"/>
+  </mash>
+</moviemasher>

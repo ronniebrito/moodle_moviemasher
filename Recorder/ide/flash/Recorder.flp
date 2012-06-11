@@ -1,0 +1,12 @@
+﻿<flash_project name="Recorder" version="1">
+    <project_folder name="Classes" expanded="true">
+        <project_folder name="Broadcast" expanded="true">
+            <project_file path="..:..:src/flash/net/sziebert/tutorials/broadcast/Broadcast.as" filetype="as" />
+        </project_folder>
+        <project_folder name="View" expanded="true">
+            <project_file path="..:..:src/flash/net/sziebert/tutorials/view/View.as" filetype="as" />
+        </project_folder>
+    </project_folder>
+    <project_file path="..:..:src/flash/broadcast.fla" filetype="fla" profile="" def_file="true" />
+    <project_file path="..:..:src/flash/view.fla" filetype="fla" profile="" />
+</flash_project>
