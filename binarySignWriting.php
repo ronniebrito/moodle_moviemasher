@@ -1,5 +1,7 @@
 <?php
 
+require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
+
 $palavra = $_REQUEST['palavra'];
 //$palavra = 'adjetivo';
 /*$file = 'http://www.nals.cce.ufsc.br/glossario/bsw.php?palavra='.$palavra ;
@@ -20,8 +22,9 @@ if($palavra == "2"){
 $bsw= "0fb30038c39954950c20538c39256a50610038d39357151410038d3935955152db38c39859d4f50fb36138c39252d4f530038c39852d4f520538c3925544ff10038d3935655000fb36138c39251e4f520338e39250952214a38e39251f52216d38d39253351f17638d3925475220fb34d38c3925244f51dc38e39254c5161dc38e39a50b51922138c39651e51622138c3965475152fb38c39653153522a38c39655353822a38d39650e53d";
 }
 
-$file = 'http://localhost/moodle/mod/moviemasher/swmp/swis/column.php??size=1&line=000000&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw='. $bsw;
+//$file= 'http://localhost/moodle/mod/moviemasher/swmp/swis/column.php??size=1&line=000000&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw='. $bsw;
 
+$file= $CFG->wwwroot.'/mod/moviemasher/swmp/swis/column.php??size=1&line=000000&fill=FFFFFF&back=FFFFFF&spacing=10&offset=50&bsw='. $bsw;
 
 $f=fopen($file,'r');
 $dataImage='';

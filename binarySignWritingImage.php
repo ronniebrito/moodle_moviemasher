@@ -1,13 +1,14 @@
 <?php
-
+require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 //ob_start();
 //header("Content-Type: image/png"); 
 //var_dump($_REQUEST);
 $bsw = $_REQUEST['bsw'];
 
-$file = 'http://localhost/moodle/mod/moviemasher/swmp/swis/column.php?bsw='. $bsw;
+//$file = 'http://localhost/moodle/mod/moviemasher/swmp/swis/column.php?bsw='. $bsw;
 
-//$file = 'http://www.google.com.br/images/experiments/nav_logo78.png';
+$file = $CFG->wwwroot.'/mod/moviemasher/swmp/swis/column.php?bsw='. $bsw;
+
 $f=fopen($file,'r');
 $data='';
 while(!feof($f))

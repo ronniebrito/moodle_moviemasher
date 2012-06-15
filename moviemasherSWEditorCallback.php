@@ -1,9 +1,10 @@
 <?php  
 //this file receives SWEditor BSW , parse BSW image  and sets Moviemasher timeline.selection.bsw
 
+require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 $bsw = (empty($_REQUEST['bsw']) ? "" : $_REQUEST['bsw']);
 
-file_get_contents("http://localhost/moodle/mod/moviemasher/binarySignWriting.php?palavra=".$bsw );		
+file_get_contents($CFG->wwwroot."/mod/moviemasher/binarySignWriting.php?palavra=".$bsw );		
 
 ?>
 <script>
@@ -47,7 +48,13 @@ newClip = newClip + '<media group="image" type="image" id="'+newID+'" label="SW"
 var newMash = mash.replace(matches[0],newClip);
 
 
+
+var position = window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate("player.position");
+
 window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate(newMash);
+
+window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate("player.position="+position);
+
 //window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate("mash.xml="+newMash);
 
 //alert(newMash);

@@ -123,9 +123,10 @@ package com.moviemasher.source
 				tag.@id = bsw;
 				tag.@bsw = bsw;
 				tag.@type = 'image';
-				tag.@url = 'http://localhost/moodle/mod/moviemasher/temp/'+ bsw.slice(0,128)+'.png';
-				tag.@href = 'http://localhost/moodle/mod/moviemasher/temp/'+ bsw.slice(0,128)+'.png';
-				tag.@icon = 'http://localhost/moodle/mod/moviemasher/temp/'+bsw.slice(0,128)+'.png';
+				//tag.@url = 'http://localhost/moodle/mod/moviemasher/temp/'+ bsw.slice(0,128)+'.png';
+				tag.@url = '../../../temp/'+ bsw.slice(0,128)+'.png';
+				tag.@href = '../../../temp/'+ bsw.slice(0,128)+'.png';
+				tag.@icon = '../../../temp/'+bsw.slice(0,128)+'.png';
 				//trace( 'url'+'http://localhost/mod/moviemasher/binarySignWritingImage.php?bsw='+bsw);
 		
 			//}

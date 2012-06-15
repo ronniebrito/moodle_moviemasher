@@ -18,23 +18,23 @@ $description - used in og:description and description meta tags
 
 */
 if (empty($title)) $title = 'My Mash';
-if (empty($description)) $description = 'Check out this video I made with Movie Masher, the open source online video editor. Click their logo in the bottom right to make your own to share.';
+$title .= ' :: Movie Masher';
+if (empty($description)) $description = 'Check out this video I made with Movie Masher, the open source online video editor. Click their logo to make your own to share.';
 
-/*
+$movie_url .= '?config=' . urlencode($config_url);
+$movie_url .= '&amp;base=' . urlencode($moviemasher_url . '/example/moodle');
 
-
-*/
 print '
-	<meta proprery="og:title" content="' . $title . '" /> 
-	<meta property="og:type" content="article"/>
-	<meta property="og:site_name" content="Movie Masher"/>
-	<meta proprery="og:description" content="' . $description . '" /> 
-	<meta property="og:image" content="' . $moviemasher_url . '/example/moodle/media/image/icon.jpg" /> 
-	<meta property="og:url" content="' . $movie_url . '" />
-	<meta property="og:video" content="' . $movie_url . '" />
-	<meta property="og:video:width" content="330" />
-	<meta property="og:video:height" content="274" />
-	<meta property="og:video:type" content="application/x-shockwave-flash" />
+	<meta name="og:title" content="' . $title . '" /> 
+	<meta name="og:type" content="article"/>
+	<meta name="og:site_name" content="Movie Masher"/>
+	<meta name="og:description" content="' . $description . '" /> 
+	<meta name="og:image" content="' . $moviemasher_url . '/example/share/media/image/icon.jpg" /> 
+	<meta name="og:url" content="' . $movie_url . '" />
+	<meta name="og:video" content="' . $movie_url . '" />
+	<meta name="og:video:width" content="394" />
+	<meta name="og:video:height" content="278" />
+	<meta name="og:video:type" content="application/x-shockwave-flash" />
 ';
 ?>
 <meta name="description" content="<?php print $description; ?>" />
@@ -42,14 +42,14 @@ print '
 <title><?php print $title; ?></title>
 <script type='text/javascript' src='<?php print $moviemasher_url; ?>/example/media/js/swfobject/swfobject.js'></script>
 <script type="text/javascript">
-// <![CDATA[
 var flashvarsObj = new Object();
 flashvarsObj.base = "<?php print $moviemasher_url; ?>/example/moodle";
 flashvarsObj.debug = 1;
+flashvarsObj.video_width = 384;
+flashvarsObj.video_height = 216;
 flashvarsObj.config = "<?php print $config_url; ?>";
 flashvarsObj.preloader = "<?php print $moviemasher_url; ?>/moviemasher/com/moviemasher/display/Preloader/stable.swf";
 swfobject.embedSWF("<?php print $moviemasher_url; ?>/moviemasher/com/moviemasher/core/MovieMasher/stable.swf", "moviemasher_container", "100%", "100%", "10.0.0", "", flashvarsObj);
-// ]]>
 </script>
 <style type="text/css">
 	html {

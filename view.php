@@ -347,7 +347,7 @@ if (has_capability('mod/moviemasher:grade', $context)){
 }
 ?>
 
-	 <iframe  id="editor_frame" src="<?php echo $CFG->wwwroot; ?>/mod/moviemasher/mm/example/moodle/index.php?userid=<?php echo $USER->id; ?>&cm_id=<?php echo $cm->id; ?>&mash_id=<?php echo $mash->id; ?>" width="100%" height="620px"> </iframe>     
+	 <iframe  id="editor_frame" src="<?php echo $CFG->wwwroot; ?>/mod/moviemasher/mm/example/moodle/index.php?userid=<?php echo $USER->id; ?>&cm_id=<?php echo $cm->id; ?>&mash_id=<?php echo $mash->id; ?>" width="1224px" height="620px"> </iframe>     
      
      
     <?php

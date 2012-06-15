@@ -14,7 +14,7 @@
 	
 	<!-- Sign WRITING -->
 	<media group='effect' type='effect' id='signboxeffect' label='Escrita de Sinais' 
-		bsw=""
+		bsw="0fb14c38e3924a54bd27138c3984bb4cf 0fb18738c39c4c04c618738c3934b94b020538c3924d14b32ef38c3924c949c 38838c392"
 		symbol='../../moviemasher/com/moviemasher/module/All/stable.swf@Signbox'
 		icon='../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Signbox'
 		href="glossario.php?sinal={bsw}"
@@ -22,11 +22,11 @@
 		scale='25,100'
 		backcolor='FFFFFF'
 		backalpha='100'
-		editable='fade,position,scale,padding,forecolor,backcolor,backalpha,composites,size'
+		editable='bsw,fade,position,scale,padding,forecolor,backcolor,backalpha,composites,size'
 		composites='swimage'
 		>
 	
-			<media group="image" type="image" id="swimage" bsw="BSW" label="Logo" url="../media/image/Logo/media.png" />
+			<media group="image" type="image" id="swimage" bsw="BSW" label="Logo" url="media/image/glyph.png" />
 
 	</media>
 

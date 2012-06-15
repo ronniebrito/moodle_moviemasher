@@ -36,7 +36,7 @@ var re = new RegExp(theSearch);
 var matches = re.exec(mash);
 
 var oldID = matches[6];
-var newID = "<?php echo substr($bsw,0, 128)+ rand(50) ?>";
+var newID = "<?php echo md5(substr($bsw,0, 128))?>";
 
 var newBSW="<?php echo $bsw ?>";
 
@@ -47,7 +47,13 @@ newClip = newClip + '<media group="image" type="image" id="'+newID+'" label="SW"
 var newMash = mash.replace(matches[0],newClip);
 
 
+
+var position = window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate("player.position");
+
 window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate(newMash);
+
+window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate("player.position="+position);
+
 //window.parent.moviemasher("editor_frame","moviemasher_editor").evaluate("mash.xml="+newMash);
 
 //alert(newMash);

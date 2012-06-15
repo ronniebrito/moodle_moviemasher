@@ -16,8 +16,6 @@
 
 
 // busca o arquivo no red5 server 
-
-
 // TODO: make red5 hostname configurable
 
 	//$source_filepath = $CFG->dirroot.'/mod/moviemasher/Recorder/web/streams/'.$id.'.flv';

@@ -180,7 +180,7 @@
 		symbol="../../moviemasher/com/moviemasher/control/Player/stable.swf@CGI" 
 		id='editGSW'		 
         	tooltip="Editar itens do glossário"
-		get='javascript:window.parent.editSW("{timeline.selection.bsw}");'
+		get='javascript:window.window.open("http://www.signbank.org/signpuddle2.0/searchword.php","glossario");'
 		icon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOff"
 		overicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnOn"
 		disicon="../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@BtnDis"

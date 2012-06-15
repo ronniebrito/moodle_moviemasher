@@ -10,6 +10,8 @@ well, the user is redirected to Facebook's sharer script, by setting the 'get' a
 an error is reported in a javascript alert, by setting the 'get' attribute.
 */
 $id = (empty($_REQUEST['id']) ? '' : $_REQUEST['id']);
+	
+
 $err = '';
 if (! $id) $err = 'Parameter id required';
 
@@ -46,7 +48,7 @@ if (! $err)
 {
 	$mash_tag = $mash_tags[0];
 	$title = (string) $mash_tag['label'];
-	if (! $title) $title = 'Sem título';
+	if (! $title) $err = 'A label must be supplied';
 }
 // try to read in template file
 if (! $err)
@@ -55,13 +57,13 @@ if (! $err)
 	$moviemasher_url = 'http://' . $_SERVER["HTTP_HOST"] . dirname(dirname(dirname(dirname(dirname($_SERVER["PHP_SELF"])))));
 	$config_url = $moviemasher_url . '/example/moodle/media/mash/' . $id . '.xml';
 	$mash_tag['config'] = 'media/xml/panel_player.xml';
-	$movie_url = $moviemasher_url . '/moviemasher/com/moviemasher/core/MovieMasher/stable.swf?';
-	$movie_url .= 'config=' . urlencode($config_url);
-	$movie_url .= '&amp;base=' . urlencode($moviemasher_url . '/example/moodle');
+	$movie_url = $moviemasher_url . '/moviemasher/com/moviemasher/core/MovieMasher/stable.swf';
+	//$movie_url .= 'config=' . urlencode($config_url);
+	//$movie_url .= '&amp;base=' . urlencode($moviemasher_url . '/example/share');
 	ob_start();
 	@include('./html.php');
 	$html = ob_get_clean();
-	if (! $html) $err = 'Was not able to read in player.php file';
+	if (! $html) $err = 'Was not able to read in html.php file';
 }
 // save out html file
 if (! $err)

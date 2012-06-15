@@ -1,4 +1,6 @@
 <?php
+
+require_once(dirname( dirname( dirname(dirname(dirname(dirname(dirname(dirname(__FILE__)))))))).'/config.php');
 /*
 This script is called directly from Movie Masher Applet, in response to a click on upload button.
 The uploaded file is in _FILES['Filedata'].
@@ -113,15 +115,11 @@ A defesa civil recomenda
 		
 	for($i =0 ; $i< $count; $i++){
 		$dif = difftime($matches[1][$i],$matches[2][$i],$matches[3][$i],$matches[4][$i],$matches[5][$i],$matches[6][$i],$matches[7][$i],$matches[8][$i]);			
-
 		
-		//$txt = urlencode($matches[9][$i]);
-		$txt = $matches[9][$i];
-		
+		$txt = $matches[9][$i];		
 		 $txt = str_replace("\n","", $txt);
 		$txt = str_replace("\t","", $txt);
 		 $txt = str_replace("\r","", $txt);
-
 		 $txt = str_replace("
 ","", $txt);
 //$txt = "test";
@@ -201,12 +199,12 @@ $subject = str_replace("\n","",$subject);
 				}
 			
 		}
-		$content .= '<clip type="effect" id="signboxeffect" track="3" start="'.(($matches[1][$i]*360+$matches[2][$i]*60+$matches[3][$i])*10).'" label="Sign Writing" lengthseconds="'.$durationSeconds.'" bsw="'.$bsw.'" href="../../../swmp/swis/image_sym.php?bsw='.$bsw.'" length="'.($durationSeconds*10).'" >		<clip type="image" id="'.substr($bsw,0, 128).'" audio="0" label="SW" trimstart="0" track="-1" fill="scale" start="0" length="'.($durationSeconds*10).'"/>		</clip> <media group="image" type="image"  id="'.substr($bsw,0, 128).'" label="SW" url="http://localhost/moodle/mod/moviemasher/temp/'.substr($bsw,0, 128).'.png" fill="crop" />';
+		$content .= '<clip type="effect" id="signboxeffect" track="3" start="'.(($matches[1][$i]*360+$matches[2][$i]*60+$matches[3][$i])*10).'" label="Sign Writing" lengthseconds="'.$durationSeconds.'" bsw="'.$bsw.'" href="http://www.signbank.org/signpuddle2.0/searchquery.php?bldSearch=01-01-001-01,01,01,98,97" length="'.($durationSeconds*10).'" >		<clip type="image" id="'.substr($bsw,0, 128).'" audio="0" label="SW" trimstart="0" track="-1" fill="scale" start="0" length="'.($durationSeconds*10).'"/>		</clip> <media group="image" type="image"  id="'.substr($bsw,0, 128).'" label="SW" url="'.$CFG->wwwroot.'/mod/moviemasher/temp/'.md5(substr($bsw,0, 128)).'.png" fill="crop" />';
 
 //$content .= '<clip type="effect" id="signboxeffect" track="3" start="'.(($matches[1][$i]*360+$matches[2][$i]*60+$matches[3][$i])*10).'" length="'.($durationSeconds*10).'" label="Sign Writing" lengthseconds="'.$durationSeconds.'" bsw="'.$bsw.'" href="http://localhost/moodle/mod/moviemasher/swmp/swis/image_sym.php?bsw='.$bsw.'" >		<clip type="image" id="'.substr($bsw,0, 128).'" bsw="'.$bsw.' "audio="0" label="SW" trimstart="0" track="-1" fill="scale" start="0" length="'.($durationSeconds*10).'"/>		</clip> <media group="image" type="image"  id="'.substr($bsw,0, 128).'" label="SW" url="../../../../../swmp/swis/column.php?bsw='.$bsw.'" fill="crop" />';
 			
 			// retrieve bsw image files
-			file_get_contents("http://localhost/moodle/mod/moviemasher/binarySignWriting.php?palavra=".$bsw );		
+			file_get_contents($CFG->wwwroot."/mod/moviemasher/binarySignWriting.php?palavra=".$bsw );		
 	}
 }
 
@@ -224,6 +222,7 @@ if ($err ){
 
 
 						
+
 					//	$attibs = 'get=\'javascript:addSubtitles("'. rawurlencode(addslashes('v< > " sd "vv')) .'");\'';
 						
 						$attibs = 'get=\'javascript:addSubtitles("'. rawurlencode(addslashes($content)) .'");\'';
