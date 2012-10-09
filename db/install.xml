@@ -62,13 +62,15 @@
     </TABLE>
 		
 	
-	<TABLE NAME="moviemasher_video" COMMENT="videos belonging to a certain user mash"   PREVIOUS="moviemasher_mash" >
+	<TABLE NAME="moviemasher_media" COMMENT="videos or images belonging to a certain user mash, uploaded"   PREVIOUS="moviemasher_mash" >
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true" ENUM="false" NEXT="mash_id"/>		
 		
-        <FIELD NAME="mash_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="mash video belongs to" PREVIOUS="id" NEXT="extension"/>
+        <FIELD NAME="mash_id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" ENUM="false" COMMENT="mash video belongs to" PREVIOUS="id" NEXT="type"/>
+
+<FIELD NAME="type" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="type of file" PREVIOUS="mash_id" NEXT="extension"/>
 				
- <FIELD NAME="extension" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="File extension" PREVIOUS="mash_id" NEXT="name"/>	
+ <FIELD NAME="extension" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="File extension" PREVIOUS="type" NEXT="name"/>	
 
 	    <FIELD NAME="name" TYPE="text" LENGTH="medium" NOTNULL="false" SEQUENCE="false" ENUM="false" COMMENT="General introduction of the moviemasher activity" PREVIOUS="extension" NEXT="duration"/>	
 			

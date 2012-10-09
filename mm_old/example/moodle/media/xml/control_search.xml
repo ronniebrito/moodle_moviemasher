@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<moviemasher>
+
+
+	
+	
+	<!-- MEDIA SEARCH ICON AND FIELD -->
+	<control height='18' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf#SearchLeft' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Icon' />
+	<control height='18' 
+		color='FFFFFF' 
+		textsize='11'
+		width='100' 
+		forecolor='000000' 
+		bind='browser.parameters.terms' 
+		symbol='../../moviemasher/com/moviemasher/control/Editor/stable.swf@Field' 
+	/>
+	
+	
+	
+	<!-- CLEAR FIELD CONTROL -->
+	<control height='18' hide='browser.parameters.terms=empty' bind='browser.parameters.terms' value='' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf#SearchRightX' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Icon' />
+	<control height='18' hide='browser.parameters.terms!=empty' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf#SearchRight' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Icon' />
+
+
+
+
+</moviemasher>

@@ -71,7 +71,7 @@ tf.height = 40;
 tf.x = 180;
 tf.y = 310;
 
-tf.text = "eh nois";
+tf.text = "eh";
 //addChild(tf);
 
 //var pageURL:String = ExternalInterface.call('window.location.href.toString');
@@ -127,7 +127,8 @@ tf.text = myUrl;
             runtime.conn.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onSecurityError);
 			//trace("Connecting to Red5...@"+ "rtmp://rocha.ava.ufsc.br/recorder/"+id);
           //  runtime.conn.connect("rtmp://rocha.ava.ufsc.br/recorder", true );
-		    runtime.conn.connect("rtmp://localhost/recorder", true );
+		  //  runtime.conn.connect("rtmp://localhost/recorder", true );
+		  runtime.conn.connect("rtmp://150.162.6.190/recorder", true );
 		}
 		
 		public function publish():void {
@@ -175,7 +176,7 @@ public function CallBackStop(result:Array)
 	
 	//http://150.162.41.4/~ronnie/etica/moodle/mod/moviemasher/Recorder/web/recorder.swf
 	
-	var url:String = myUrl + "/../../../recorderCallback?id=" + this.id;
+	var url:String = myUrl + "/../../../recorderCallback.php?id=" + this.id;
 	tf.text = myUrl; 
 	
 	// id = mash id 

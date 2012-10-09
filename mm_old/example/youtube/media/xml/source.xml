@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- LOADED BY CONFIG -->
+<moviemasher config='media/xml/source_module.xml'>
+	
+	<source id='youtube' format="5" fields="entry[media:group/yt:duration/@seconds&lt;=960]" symbol='../../moviemasher/com/moviemasher/source/YouTubeSource/stable.swf@YouTubeSource' />
+
+</moviemasher>
+
