@@ -1,9 +1,0 @@
-<moviemasher>
-  <mash width="320" height="240" crop="1" label="Example Mash" quantize="10" id="e2d25ff5a3b8940eb3b9d9b0aa615e07">
-    <clip type="effect" id="captioneffect" track="2" start="13" longtext="Titling with custom fonts" textsize="8" length="20" backalpha="62.82051282051281" forecolor="ffffcc" font="default" label="Titling with custom fonts" backcolor="000000" padding="3" lengthseconds="2"/>
-    <clip type="video" id="mdch264video" volume="0,70,100,70" audio="1" trimstart="0" trimend="0" label="MDC H264" track="0" fill="crop" start="0" length="116"/>
-    <option type="font" id="default" url="../../moviemasher/com/moviemasher/font/FreeSans/stable.swf@FreeSans" label="Free Sans"/>
-    <media group="video" type="video" id="mdch264video" label="MDC H264" duration="11.6" audio="../media/video/MDC/media.mp4" url="../media/video/MDC/media.mp4" icon="../media/video/MDC/icon.jpg" wave="../media/video/MDC/audio.png" fill="crop"/>
-    <media group="effect" type="effect" id="captioneffect" label="Caption" symbol="../../moviemasher/com/moviemasher/module/All/stable.swf@Caption" icon="../../moviemasher/com/moviemasher/module/All/stable.swf@com.moviemasher.module.Caption" padding="3" longtext="Caption" forecolor="000000" backalpha="50" backcolor="FFFFFF" textsize="14" font="default" editable="padding,font,textsize,longtext,forecolor,backcolor,backalpha"/>
-  </mash>
-</moviemasher>

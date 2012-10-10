@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<moviemasher>
-	
-	<source id='media' url='media/php/media.php?group={group}&amp;label={terms}&amp;index={index}&amp;count={count}' symbol='../../moviemasher/com/moviemasher/source/RemoteSource/stable.swf@RemoteSource' />
-
-</moviemasher>
-

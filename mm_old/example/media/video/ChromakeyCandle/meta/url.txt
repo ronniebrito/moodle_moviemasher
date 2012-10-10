@@ -1,1 +1,0 @@
-http://ip-10-102-75-77.ec2.internal/moviemasher/example/server/media/upload/6aab87a3ec4289ea1e9f6718ac1272ef/media.mpg

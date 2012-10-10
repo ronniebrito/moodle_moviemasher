@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<moviemasher>
-  <mash id="9" quantize="10" autostop="" width="640" height="336" label="sdsdf" play="0" config="media/xml/panel_player.xml">
-    <clip type="video" id="c5cfa9e43e81d7fbeaded619362afd96" label="VEVO News: Lady Gaga Exclusive Interview Coming Soon!" track="0" trimstart="0" trimend="0" fill="stretch" volume="0,70,100,70" audio="1" length="470"/>
-    <clip type="video" id="SL1" trimend="0" trimstart="0" track="0" volume="0,70,100,70" fill="scale" audio="http://rocha.ava.ufsc.br/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20435/2/1.flv" label="teste.flv" length="613"/>
-    <media group="video" type="video" id="SL1" label="teste.flv" duration="61.3" audio="http://rocha.ava.ufsc.br/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20435/2/1.flv" url="http://rocha.ava.ufsc.br/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20435/2/1.flv" icon="http://rocha.ava.ufsc.br/~ronnie/etica/moodle/file.php/1/moddata/moviemasher/20435/2/1.jpg" fill="scale"/>
-    <media label="VEVO News: Lady Gaga Exclusive Interview Coming Soon!" id="c5cfa9e43e81d7fbeaded619362afd96" duration="47" type="video" url="HXc0NnDsZ30.youtube" icon="http://i.ytimg.com/vi/HXc0NnDsZ30/default.jpg" audio="1"/>
-  </mash>
-</moviemasher>

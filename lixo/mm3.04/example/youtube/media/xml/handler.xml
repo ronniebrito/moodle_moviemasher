@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<moviemasher config='media/xml/handler_video.xml'>
-	
-	<!-- HANDLER FOR YOUTUBE SWF -->
-	<handler id='youtube' url='../../moviemasher/com/moviemasher/handler/FLVHandler/stable.swf@YouTubeHandler' />
-
-</moviemasher>
-

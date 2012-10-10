@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<moviemasher>
-	
-	<!-- HANDLERS FOR ALL MEDIA EXCEPT IMAGES -->
-	<handler id='*' url='../../moviemasher/com/moviemasher/handler/FLVHandler/stable.swf@FLVHandler' />
-	<handler id='mp3' url='../../moviemasher/com/moviemasher/handler/MP3Handler/stable.swf@MP3Handler' />
-
-</moviemasher>
-

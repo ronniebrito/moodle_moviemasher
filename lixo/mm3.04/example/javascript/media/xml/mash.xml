@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<moviemasher>
-
-	<mash width="320" height="240" crop="1">
-		<clip id='barstheme' length='4' forecolor="333399" backcolor="666666" />
-		<clip id='tickereffect' length='4' track='1' longtext="JavaScript Test" />
-	</mash>
-	
-</moviemasher>

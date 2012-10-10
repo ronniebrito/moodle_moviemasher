@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<moviemasher config='media/xml/control_nav_module.xml'>
-	
-	<!-- MEDIA FILTER CONTROLS -->
-	<control preselected="1" pattern='YouTube' select='browser.source=youtube' bind='browser.source' value='youtube' fill='stretch' width='70' forecolor='FFFFFF' textalign='center' symbol='../../moviemasher/com/moviemasher/control/Player/stable.swf@Text' icon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOff' overicon='../../moviemasher/com/moviemasher/skin/Liquid/stable.swf@FadeOn' />
-	
-</moviemasher>
